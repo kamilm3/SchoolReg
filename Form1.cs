@@ -6,5 +6,10 @@ namespace SchoolReg
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+
+        }
     }
 }
