@@ -21,7 +21,7 @@ namespace SchoolReg
         {
             InitializeComponent();
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
@@ -29,35 +29,17 @@ namespace SchoolReg
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
             
-            */
             
+            /*
             myConnection = new SqlConnection("user id=admin;" + // Username
                                   "password=admin;" + // Password
                                   "server=Kamil\\MSSQLSERVER03;" + // Server name
                                   "TrustServerCertificate=True;" +
                                   "database=SchoolReg; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
+            */
             
             
-
-            // Initialize the connection
-            /*
-            myConnection = new SqlConnection("user id=Memoh;" + // Username
-                                              "password=memoh4321;" + // Password
-                                              "server=Memoh;" + // Server name
-                                              "TrustServerCertificate=True;" +
-                                              "database=project291; " + // Database
-                                              "connection timeout=30"); // Timeout in seconds
-            */
-
-            /*
-            myConnection = new SqlConnection("user id=admin3;" + // Username
-                                             "password=admin;" + // Password
-                                             "server=DESKTOP-6QG008O;" + // Server name
-                                             "TrustServerCertificate=True;" +
-                                             "database=project291; " + // Database
-                                             "connection timeout=30"); // Timeout in seconds
-            */
 
             try
             {
@@ -74,7 +56,13 @@ namespace SchoolReg
 
         private void InitializeComponent()
         {
-
+            SuspendLayout();
+            // 
+            // Form1
+            // 
+            ClientSize = new Size(1130, 547);
+            Name = "Form1";
+            ResumeLayout(false);
         }
 
         private void studentID_Click(object sender, EventArgs e)
@@ -83,6 +71,10 @@ namespace SchoolReg
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

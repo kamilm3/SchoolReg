@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace CMPT291_Project
+namespace CMPT391_Project
 {
     public partial class Form1 : Form
     {
@@ -23,7 +23,7 @@ namespace CMPT291_Project
             InitializeComponent();
 
 
-            /*
+            
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
@@ -31,7 +31,7 @@ namespace CMPT291_Project
                                   "database=Project_291; " + // Database
                                   "connection timeout=30"); // Timeout in seconds
             
-            */
+            
             /*
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
@@ -98,25 +98,20 @@ namespace CMPT291_Project
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            button2 = new Button();
-            textBox1 = new TextBox();
-            studentID = new Label();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            textBox3 = new TextBox();
+        { 
             SuspendLayout();
             // 
             // button2
             // 
+            /*
             button2.Location = new Point(422, 440);
             button2.Name = "button2";
             button2.Size = new Size(316, 53);
             button2.TabIndex = 1;
             button2.Text = "Enter";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            */
+            //button2.Click += button2_Click;
             // 
             // textBox1
             // 
@@ -135,7 +130,7 @@ namespace CMPT291_Project
             studentID.Size = new Size(195, 43);
             studentID.TabIndex = 3;
             studentID.Text = "Enter Student ID";
-            studentID.Click += studentID_Click;
+            //studentID.Click += studentID_Click;
             // 
             // label1
             // 
@@ -164,7 +159,7 @@ namespace CMPT291_Project
             label2.Size = new Size(74, 43);
             label2.TabIndex = 7;
             label2.Text = "Term";
-            label2.Click += label2_Click;
+            //label2.Click += label2_Click;
             // 
             // textBox3
             // 
@@ -185,7 +180,7 @@ namespace CMPT291_Project
             Controls.Add(textBox2);
             Controls.Add(studentID);
             Controls.Add(textBox1);
-            Controls.Add(button2);
+            //Controls.Add(button2);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -193,12 +188,13 @@ namespace CMPT291_Project
         }
 
         #endregion
-        private Button button2;
-        private TextBox textBox1;
+        //private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
         private Label studentID;
         private Label label1;
-        private TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox2;
         private Label label2;
-        private TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox3;
+        private int button2_Click;
     }
 }
