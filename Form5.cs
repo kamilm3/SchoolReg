@@ -10,22 +10,17 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form2 : Form
+    public partial class Form5 : Form
     {
-        public Form2()
+        public Form5()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 classSearchPage = new Form3();
-            classSearchPage.Show();
+            Form3 backButton = new Form3();
+            backButton.ShowDialog(); 
         }
     }
 }

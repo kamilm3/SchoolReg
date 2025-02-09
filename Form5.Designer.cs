@@ -1,6 +1,6 @@
 ﻿namespace SchoolReg
 {
-    partial class Form3
+    partial class Form5
     {
         /// <summary>
         /// Required designer variable.
@@ -28,50 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            bindingSource1 = new BindingSource(components);
             button1 = new Button();
-            button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            label1 = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(39, 46);
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(33, 12);
             button1.Name = "button1";
-            button1.Size = new Size(929, 47);
-            button1.TabIndex = 2;
-            button1.Text = "2025 Fall";
+            button1.Size = new Size(171, 40);
+            button1.TabIndex = 3;
+            button1.Text = "Change Term";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
+            // label1
             // 
-            button2.Location = new Point(39, 99);
-            button2.Name = "button2";
-            button2.Size = new Size(929, 47);
-            button2.TabIndex = 3;
-            button2.Text = "2026 Winter";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(33, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(205, 32);
+            label1.TabIndex = 5;
+            label1.Text = "Search for classes";
             // 
-            // Form3
+            // textBox1
+            // 
+            textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.DarkGray;
+            textBox1.Location = new Point(33, 126);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(929, 38);
+            textBox1.TabIndex = 4;
+            // 
+            // Form5
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1007, 623);
-            Controls.Add(button2);
+            ClientSize = new Size(1015, 579);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
             Controls.Add(button1);
-            Name = "Form3";
-            Text = "Form3";
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            Name = "Form5";
+            Text = "Form5";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private BindingSource bindingSource1;
         private Button button1;
-        private Button button2;
+        private Label label1;
+        private TextBox textBox1;
     }
 }

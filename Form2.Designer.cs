@@ -34,20 +34,23 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(192, 192, 255);
+            button1.BackColor = Color.FromArgb(192, 0, 0);
             button1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(471, 214);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(83, 108);
             button1.Name = "button1";
             button1.Size = new Size(299, 54);
             button1.TabIndex = 0;
             button1.Text = "Class Search";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.BackColor = Color.FromArgb(192, 192, 255);
+            button2.BackColor = Color.FromArgb(192, 0, 0);
             button2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(471, 293);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(83, 187);
             button2.Name = "button2";
             button2.Size = new Size(299, 54);
             button2.TabIndex = 1;
@@ -59,7 +62,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1284, 689);
+            ClientSize = new Size(465, 334);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Form2";
