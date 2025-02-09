@@ -37,7 +37,7 @@
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(71, 155);
+            textBox1.Location = new Point(71, 146);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(929, 38);
             textBox1.TabIndex = 0;
@@ -45,17 +45,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(71, 105);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(71, 104);
             label1.Name = "label1";
-            label1.Size = new Size(205, 32);
+            label1.Size = new Size(257, 28);
             label1.TabIndex = 1;
-            label1.Text = "Search for classes";
+            label1.Text = "Search for 2025 Fall classes";
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(71, 25);
+            button1.Location = new Point(71, 23);
             button1.Name = "button1";
             button1.Size = new Size(171, 40);
             button1.TabIndex = 2;

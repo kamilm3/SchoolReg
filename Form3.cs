@@ -33,7 +33,7 @@ namespace SchoolReg
             Form5 winterClassSearch = new Form5();
             
             winterClassSearch.ShowDialog();
-            //this.hide();
+            this.Hide();
             //this.Close();
             //System.Windows.Forms.Application.ExitThread();
 

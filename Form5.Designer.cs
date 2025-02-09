@@ -47,18 +47,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(33, 76);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(33, 85);
             label1.Name = "label1";
-            label1.Size = new Size(205, 32);
+            label1.Size = new Size(289, 28);
             label1.TabIndex = 5;
-            label1.Text = "Search for classes";
+            label1.Text = "Search for 2026 Winter classes";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(33, 126);
+            textBox1.Location = new Point(33, 125);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(929, 38);
             textBox1.TabIndex = 4;
@@ -67,7 +67,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1015, 579);
+            ClientSize = new Size(1015, 612);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
