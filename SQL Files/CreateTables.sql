@@ -36,6 +36,8 @@ CREATE TABLE Courses (
     ClassroomID INT FOREIGN KEY REFERENCES Classroom(ClassroomID),
     Credits INT,
     CourseName VARCHAR(255),
+	Year INT NOT NULL,
+	Term VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE Student (
