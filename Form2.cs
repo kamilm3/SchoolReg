@@ -11,17 +11,23 @@ using System.Windows.Forms;
 namespace SchoolReg
 {
     public partial class Form2 : Form
+
+
     {
+        //public Form2(int studentID, string emailAddress)
         public Form2()
+
+
         {
             InitializeComponent();
+            testLabel.Text = Verification.studentEmail;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ShoppingCart cartPage = new ShoppingCart();   
+            ShoppingCart cartPage = new ShoppingCart();
             cartPage.ShowDialog();
-            
+
             this.Close();
         }
 
@@ -30,5 +36,7 @@ namespace SchoolReg
             SearchOptions classSearchPage = new SearchOptions();
             classSearchPage.Show();
         }
+
+
     }
 }

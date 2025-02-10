@@ -39,7 +39,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(43, 93);
+            button1.Location = new Point(70, 114);
             button1.Name = "button1";
             button1.Size = new Size(929, 47);
             button1.TabIndex = 2;
@@ -50,7 +50,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F);
-            button2.Location = new Point(43, 146);
+            button2.Location = new Point(70, 167);
             button2.Name = "button2";
             button2.Size = new Size(929, 47);
             button2.TabIndex = 3;
@@ -60,15 +60,18 @@
             // 
             // button3
             // 
-            button3.Location = new Point(43, 31);
+            button3.BackColor = Color.FromArgb(192, 0, 0);
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(70, 38);
             button3.Name = "button3";
-            button3.Size = new Size(153, 36);
+            button3.Size = new Size(200, 50);
             button3.TabIndex = 4;
             button3.Text = "Back";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // Form3
+            // SearchOptions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -76,7 +79,7 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "Form3";
+            Name = "SearchOptions";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);

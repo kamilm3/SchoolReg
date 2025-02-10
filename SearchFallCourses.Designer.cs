@@ -39,7 +39,7 @@
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(71, 146);
+            textBox1.Location = new Point(70, 146);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(929, 38);
             textBox1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(71, 104);
+            label1.Location = new Point(70, 115);
             label1.Name = "label1";
             label1.Size = new Size(257, 28);
             label1.TabIndex = 1;
@@ -56,19 +56,21 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(71, 23);
+            button1.BackColor = Color.FromArgb(192, 0, 0);
+            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(70, 38);
             button1.Name = "button1";
-            button1.Size = new Size(171, 40);
+            button1.Size = new Size(200, 50);
             button1.TabIndex = 2;
             button1.Text = "Change Term";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // FallCourses
             // 
             FallCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            FallCourses.Location = new Point(71, 207);
+            FallCourses.Location = new Point(70, 215);
             FallCourses.Name = "FallCourses";
             FallCourses.RowHeadersWidth = 51;
             FallCourses.Size = new Size(929, 374);

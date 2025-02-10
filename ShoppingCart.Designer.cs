@@ -32,8 +32,10 @@
             label1 = new Label();
             button3 = new Button();
             bindingSource1 = new BindingSource(components);
-            comboBox1 = new ComboBox();
+            dropDownTerm = new ComboBox();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -41,7 +43,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(43, 91);
+            label1.Location = new Point(70, 115);
             label1.Name = "label1";
             label1.Size = new Size(140, 28);
             label1.TabIndex = 0;
@@ -49,35 +51,52 @@
             // 
             // button3
             // 
-            button3.Location = new Point(43, 27);
+            button3.BackColor = Color.FromArgb(192, 0, 0);
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(70, 38);
             button3.Name = "button3";
-            button3.Size = new Size(153, 36);
+            button3.Size = new Size(200, 50);
             button3.TabIndex = 5;
             button3.Text = "Back";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // comboBox1
+            // dropDownTerm
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Fall 2025", "Winter 2026" });
-            comboBox1.Location = new Point(43, 133);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(924, 28);
-            comboBox1.TabIndex = 6;
+            dropDownTerm.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dropDownTerm.ForeColor = SystemColors.ScrollBar;
+            dropDownTerm.FormattingEnabled = true;
+            dropDownTerm.Items.AddRange(new object[] { "Fall 2025", "Winter 2026" });
+            dropDownTerm.Location = new Point(70, 146);
+            dropDownTerm.Name = "dropDownTerm";
+            dropDownTerm.Size = new Size(924, 39);
+            dropDownTerm.TabIndex = 6;
+            dropDownTerm.Text = "Choose term";
             // 
-            // Form6
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(70, 215);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(929, 676);
+            dataGridView1.TabIndex = 7;
+            // 
+            // ShoppingCart
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1341, 581);
-            Controls.Add(comboBox1);
+            Controls.Add(dataGridView1);
+            Controls.Add(dropDownTerm);
             Controls.Add(button3);
             Controls.Add(label1);
-            Name = "Form6";
+            Name = "ShoppingCart";
             Text = "Form6";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -87,6 +106,7 @@
         private Label label1;
         private Button button3;
         private BindingSource bindingSource1;
-        private ComboBox comboBox1;
+        private ComboBox dropDownTerm;
+        private DataGridView dataGridView1;
     }
 }

@@ -1,5 +1,8 @@
-﻿namespace SchoolReg
+﻿
+
+namespace SchoolReg
 {
+    //public static Form2 instance;
     partial class Form2
     {
         /// <summary>
@@ -28,51 +31,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
+            searchButton = new Button();
+            cartButton = new Button();
+            header = new Label();
+            testLabel = new Label();
             SuspendLayout();
             // 
-            // button1
+            // searchButton
             // 
-            button1.BackColor = Color.FromArgb(192, 0, 0);
-            button1.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(83, 108);
-            button1.Name = "button1";
-            button1.Size = new Size(299, 54);
-            button1.TabIndex = 0;
-            button1.Text = "Class Search";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            searchButton.BackColor = Color.FromArgb(192, 0, 0);
+            searchButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.White;
+            searchButton.Location = new Point(684, 154);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(600, 60);
+            searchButton.TabIndex = 0;
+            searchButton.Text = "Class Search";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += button1_Click;
             // 
-            // button2
+            // cartButton
             // 
-            button2.BackColor = Color.FromArgb(192, 0, 0);
-            button2.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(83, 187);
-            button2.Name = "button2";
-            button2.Size = new Size(299, 54);
-            button2.TabIndex = 1;
-            button2.Text = "Cart";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            cartButton.BackColor = Color.FromArgb(192, 0, 0);
+            cartButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cartButton.ForeColor = Color.White;
+            cartButton.Location = new Point(684, 252);
+            cartButton.Name = "cartButton";
+            cartButton.Size = new Size(600, 60);
+            cartButton.TabIndex = 1;
+            cartButton.Text = "Cart";
+            cartButton.UseVisualStyleBackColor = false;
+            cartButton.Click += button2_Click;
+            // 
+            // header
+            // 
+            header.BackColor = Color.Brown;
+            header.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            header.ForeColor = Color.White;
+            header.Location = new Point(1, -1);
+            header.Name = "header";
+            header.Size = new Size(2000, 84);
+            header.TabIndex = 5;
+            header.Text = "Course Registration";
+            header.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // testLabel
+            // 
+            testLabel.AutoSize = true;
+            testLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            testLabel.Location = new Point(102, 137);
+            testLabel.Name = "testLabel";
+            testLabel.Size = new Size(91, 38);
+            testLabel.TabIndex = 6;
+            testLabel.Text = "label1";
+            testLabel.Visible = false;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1105, 601);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(1601, 601);
+            Controls.Add(testLabel);
+            Controls.Add(header);
+            Controls.Add(cartButton);
+            Controls.Add(searchButton);
             Name = "Form2";
             WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button searchButton;
+        private Button cartButton;
+        private Label header;
+        private Label testLabel;
     }
 }

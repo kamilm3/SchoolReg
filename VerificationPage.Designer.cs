@@ -18,12 +18,16 @@ namespace CMPT391_Project
         public SqlCommand myCommand;
         public SqlDataReader myReader;
 
+        public static Form1 instance;
+
         public Form1()
+            
         {
             InitializeComponent();
 
+            instance = this;
 
-            
+
             myConnection = new SqlConnection("user id=admin3;" + // Username
                                   "password=admin;" + // Password
                                   "server=LAPTOP-6TEGHEN2;" + // Server name
