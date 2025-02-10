@@ -31,6 +31,8 @@
             button1 = new Button();
             label1 = new Label();
             textBox1 = new TextBox();
+            WinterCourses = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)WinterCourses).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -63,16 +65,27 @@
             textBox1.Size = new Size(929, 38);
             textBox1.TabIndex = 4;
             // 
-            // Form5
+            // WinterCourses
+            // 
+            WinterCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            WinterCourses.Location = new Point(33, 206);
+            WinterCourses.Name = "WinterCourses";
+            WinterCourses.RowHeadersWidth = 51;
+            WinterCourses.Size = new Size(929, 377);
+            WinterCourses.TabIndex = 6;
+            // 
+            // SearchWinterCourses
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1440, 1024);
+            Controls.Add(WinterCourses);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
-            Name = "Form5";
+            Name = "SearchWinterCourses";
             WindowState = FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)WinterCourses).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -82,5 +95,6 @@
         private Button button1;
         private Label label1;
         private TextBox textBox1;
+        private DataGridView WinterCourses;
     }
 }

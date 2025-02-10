@@ -59,7 +59,7 @@ namespace SchoolReg
             label2 = new Label();
             label1 = new Label();
             studentIDInput = new System.Windows.Forms.TextBox();
-            label3 = new Label();
+            header = new Label();
             sqlCommand1 = new SqlCommand();
             nextButton = new System.Windows.Forms.Button();
             SuspendLayout();
@@ -67,7 +67,7 @@ namespace SchoolReg
             // emailAddressInput
             // 
             emailAddressInput.Font = new Font("Segoe UI", 14F);
-            emailAddressInput.Location = new Point(514, 352);
+            emailAddressInput.Location = new Point(801, 429);
             emailAddressInput.Name = "emailAddressInput";
             emailAddressInput.Size = new Size(439, 39);
             emailAddressInput.TabIndex = 7;
@@ -77,7 +77,7 @@ namespace SchoolReg
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Light", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(604, 302);
+            label2.Location = new Point(906, 381);
             label2.Name = "label2";
             label2.Size = new Size(232, 32);
             label2.TabIndex = 6;
@@ -89,7 +89,7 @@ namespace SchoolReg
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Light", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(619, 149);
+            label1.Location = new Point(932, 229);
             label1.Name = "label1";
             label1.Size = new Size(194, 32);
             label1.TabIndex = 0;
@@ -100,23 +100,23 @@ namespace SchoolReg
             // studentIDInput
             // 
             studentIDInput.Font = new Font("Segoe UI", 14F);
-            studentIDInput.Location = new Point(514, 203);
+            studentIDInput.Location = new Point(801, 280);
             studentIDInput.Name = "studentIDInput";
             studentIDInput.Size = new Size(439, 39);
             studentIDInput.TabIndex = 2;
             studentIDInput.TextChanged += textBox1_TextChanged;
             // 
-            // label3
+            // header
             // 
-            label3.BackColor = Color.Brown;
-            label3.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(-4, -2);
-            label3.Name = "label3";
-            label3.Size = new Size(1427, 84);
-            label3.TabIndex = 4;
-            label3.Text = "Course Registration";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            header.BackColor = Color.Brown;
+            header.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            header.ForeColor = Color.White;
+            header.Location = new Point(-4, -2);
+            header.Name = "header";
+            header.Size = new Size(2000, 84);
+            header.TabIndex = 4;
+            header.Text = "Course Registration";
+            header.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // sqlCommand1
             // 
@@ -126,9 +126,9 @@ namespace SchoolReg
             // nextButton
             // 
             nextButton.BackColor = Color.FromArgb(192, 0, 0);
-            nextButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nextButton.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             nextButton.ForeColor = Color.White;
-            nextButton.Location = new Point(514, 472);
+            nextButton.Location = new Point(801, 556);
             nextButton.Name = "nextButton";
             nextButton.Size = new Size(439, 59);
             nextButton.TabIndex = 5;
@@ -139,11 +139,11 @@ namespace SchoolReg
             // Verification
             // 
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(1421, 753);
+            ClientSize = new Size(1794, 753);
             Controls.Add(emailAddressInput);
             Controls.Add(label2);
             Controls.Add(nextButton);
-            Controls.Add(label3);
+            Controls.Add(header);
             Controls.Add(studentIDInput);
             Controls.Add(label1);
             Name = "Verification";
@@ -181,7 +181,7 @@ namespace SchoolReg
         }
         private System.Windows.Forms.TextBox emailAddressInput;
         private Label label2;
-        private Label label3;
+        private Label header;
         private SqlCommand sqlCommand1;
         private System.Windows.Forms.Button nextButton;
 

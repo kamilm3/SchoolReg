@@ -31,6 +31,8 @@
             textBox1 = new TextBox();
             label1 = new Label();
             button1 = new Button();
+            FallCourses = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)FallCourses).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -63,16 +65,27 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Form4
+            // FallCourses
+            // 
+            FallCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            FallCourses.Location = new Point(71, 207);
+            FallCourses.Name = "FallCourses";
+            FallCourses.RowHeadersWidth = 51;
+            FallCourses.Size = new Size(929, 374);
+            FallCourses.TabIndex = 3;
+            // 
+            // SearchFallCourses
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1098, 593);
+            Controls.Add(FallCourses);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Name = "Form4";
+            Name = "SearchFallCourses";
             WindowState = FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)FallCourses).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -82,5 +95,6 @@
         private TextBox textBox1;
         private Label label1;
         private Button button1;
+        private DataGridView FallCourses;
     }
 }
