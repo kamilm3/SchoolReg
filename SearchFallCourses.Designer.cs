@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            searchInput = new TextBox();
             label1 = new Label();
             button1 = new Button();
             FallCourses = new DataGridView();
+            searchButton = new Button();
+            button3 = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)FallCourses).BeginInit();
             SuspendLayout();
             // 
-            // textBox1
+            // searchInput
             // 
-            textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(70, 146);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(929, 38);
-            textBox1.TabIndex = 0;
+            searchInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchInput.ForeColor = Color.DarkGray;
+            searchInput.Location = new Point(70, 146);
+            searchInput.Name = "searchInput";
+            searchInput.Size = new Size(929, 38);
+            searchInput.TabIndex = 0;
+            searchInput.TextChanged += searchInput_TextChanged;
             // 
             // label1
             // 
@@ -56,7 +60,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(192, 0, 0);
+            button1.BackColor = Color.Black;
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(70, 38);
@@ -70,21 +74,56 @@
             // FallCourses
             // 
             FallCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            FallCourses.Location = new Point(70, 215);
+            FallCourses.Location = new Point(70, 267);
             FallCourses.Name = "FallCourses";
             FallCourses.RowHeadersWidth = 51;
             FallCourses.Size = new Size(929, 374);
             FallCourses.TabIndex = 3;
+            FallCourses.Visible = false;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(192, 0, 0);
+            searchButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.White;
+            searchButton.Location = new Point(1033, 146);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(192, 38);
+            searchButton.TabIndex = 4;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1278, 362);
+            button3.Name = "button3";
+            button3.Size = new Size(8, 8);
+            button3.TabIndex = 5;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(70, 209);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 6;
+            label2.Text = "label2";
             // 
             // SearchFallCourses
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1098, 593);
+            ClientSize = new Size(1341, 621);
+            Controls.Add(label2);
+            Controls.Add(button3);
+            Controls.Add(searchButton);
             Controls.Add(FallCourses);
             Controls.Add(button1);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(searchInput);
             Name = "SearchFallCourses";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)FallCourses).EndInit();
@@ -94,9 +133,12 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox searchInput;
         private Label label1;
         private Button button1;
         private DataGridView FallCourses;
+        private Button searchButton;
+        private Button button3;
+        private Label label2;
     }
 }

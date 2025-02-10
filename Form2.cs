@@ -20,7 +20,8 @@ namespace SchoolReg
 
         {
             InitializeComponent();
-            testLabel.Text = Verification.studentEmail;
+            string studentEmail = Verification.studentEmail;
+            //MessageBox.Show("Passed email address: " + studentEmail);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace SchoolReg
         {
             SearchOptions classSearchPage = new SearchOptions();
             classSearchPage.Show();
+            this.Hide();
         }
 
 

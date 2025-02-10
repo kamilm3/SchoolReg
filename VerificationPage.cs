@@ -215,6 +215,7 @@ namespace SchoolReg
 
                         Form2 secondScreen = new Form2();
                         secondScreen.ShowDialog();
+                        this.Hide();
 
 
 
@@ -230,11 +231,6 @@ namespace SchoolReg
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-
-
-
-            //MessageBox.Show("tEst " + studentIDInput.Text);
 
         }
 

@@ -79,7 +79,7 @@ namespace SchoolReg
             // 
             testLabel.AutoSize = true;
             testLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            testLabel.Location = new Point(102, 137);
+            testLabel.Location = new Point(48, 119);
             testLabel.Name = "testLabel";
             testLabel.Size = new Size(91, 38);
             testLabel.TabIndex = 6;
