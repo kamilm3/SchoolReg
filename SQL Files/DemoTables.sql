@@ -20,12 +20,12 @@ INSERT INTO Classroom (Location, Capacity) VALUES
 ('Building D, Room 404', 5);
 
 
-INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term) VALUES
-(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall'),
-(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall'),
-(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall'),
-(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter'),
-(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter');
+INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode) VALUES
+(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101'),
+(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200'),
+(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114'),
+(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372'),
+(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101');
 
 
 INSERT INTO Student (DepartmentID, DOB, Email, FirstName, LastName) VALUES
@@ -107,3 +107,5 @@ INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES
 INSERT INTO Prereq (CourseID, PrereqID) VALUES
 (102, 101),  -- Data Structures requires Introduction to Programming
 (104, 103);  -- Quantum Mechanics requires Calculus I
+
+select * from Courses

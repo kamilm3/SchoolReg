@@ -37,7 +37,8 @@ CREATE TABLE Courses (
     Credits INT,
     CourseName VARCHAR(255),
 	Year INT NOT NULL,
-	Term VARCHAR(10) NOT NULL
+	Term VARCHAR(10) NOT NULL,
+	CourseCode VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE Student (
