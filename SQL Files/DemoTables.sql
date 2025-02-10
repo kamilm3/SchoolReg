@@ -107,5 +107,3 @@ INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES
 INSERT INTO Prereq (CourseID, PrereqID) VALUES
 (102, 101),  -- Data Structures requires Introduction to Programming
 (104, 103);  -- Quantum Mechanics requires Calculus I
-
-select * from Courses
