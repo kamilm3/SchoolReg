@@ -30,14 +30,16 @@
         {
             button1 = new Button();
             label1 = new Label();
-            textBox1 = new TextBox();
+            searchInput = new TextBox();
             WinterCourses = new DataGridView();
+            searchButton = new Button();
+            noResultMessage = new Label();
             ((System.ComponentModel.ISupportInitialize)WinterCourses).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(192, 0, 0);
+            button1.BackColor = Color.Black;
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(70, 38);
@@ -58,32 +60,59 @@
             label1.TabIndex = 5;
             label1.Text = "Search for 2026 Winter classes";
             // 
-            // textBox1
+            // searchInput
             // 
-            textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(70, 146);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(929, 38);
-            textBox1.TabIndex = 4;
+            searchInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchInput.ForeColor = Color.DarkGray;
+            searchInput.Location = new Point(70, 146);
+            searchInput.Name = "searchInput";
+            searchInput.Size = new Size(929, 38);
+            searchInput.TabIndex = 4;
             // 
             // WinterCourses
             // 
             WinterCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WinterCourses.Location = new Point(70, 215);
+            WinterCourses.Location = new Point(70, 267);
             WinterCourses.Name = "WinterCourses";
             WinterCourses.RowHeadersWidth = 51;
             WinterCourses.Size = new Size(929, 676);
             WinterCourses.TabIndex = 6;
+            WinterCourses.Visible = false;
+            // 
+            // searchButton
+            // 
+            searchButton.BackColor = Color.FromArgb(192, 0, 0);
+            searchButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            searchButton.ForeColor = Color.White;
+            searchButton.Location = new Point(1033, 146);
+            searchButton.Name = "searchButton";
+            searchButton.Size = new Size(192, 38);
+            searchButton.TabIndex = 7;
+            searchButton.Text = "Search";
+            searchButton.UseVisualStyleBackColor = false;
+            searchButton.Click += searchButton_Click;
+            // 
+            // noResultMessage
+            // 
+            noResultMessage.AutoSize = true;
+            noResultMessage.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            noResultMessage.Location = new Point(70, 209);
+            noResultMessage.Name = "noResultMessage";
+            noResultMessage.Size = new Size(77, 31);
+            noResultMessage.TabIndex = 8;
+            noResultMessage.Text = "label2";
+            noResultMessage.Visible = false;
             // 
             // SearchWinterCourses
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1440, 1024);
+            Controls.Add(noResultMessage);
+            Controls.Add(searchButton);
             Controls.Add(WinterCourses);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(searchInput);
             Controls.Add(button1);
             Name = "SearchWinterCourses";
             WindowState = FormWindowState.Maximized;
@@ -96,7 +125,9 @@
 
         private Button button1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox searchInput;
         private DataGridView WinterCourses;
+        private Button searchButton;
+        private Label noResultMessage;
     }
 }

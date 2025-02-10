@@ -16,6 +16,8 @@ namespace SchoolReg
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
+        //private string lable2;
+        
 
         public SearchFallCourses()
         {
@@ -68,20 +70,28 @@ namespace SchoolReg
                         adapter.Fill(dt);
 
                         FallCourses.DataSource = dt;
-                        FallCourses.Visible = true;
+                        
+
+                        if (FallCourses.Rows.Count == 1)
+                        {
+                            label2.Text = "There are no results for " + courseName;
+                            label2.Visible = true;
+                            return;
+                        }
+                        else
+                        {
+                            FallCourses.Visible = true;
+                        }
                     }
                     catch (Exception ex)
                     {
                     }
-      
-
-                  
-
 
                 }
             }
             catch (Exception ex)
             {
+                
             }
         }
 

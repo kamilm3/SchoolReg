@@ -106,11 +106,13 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(70, 209);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(77, 31);
             label2.TabIndex = 6;
             label2.Text = "label2";
+            label2.Visible = false;
             // 
             // SearchFallCourses
             // 
