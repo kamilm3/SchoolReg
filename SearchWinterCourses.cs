@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form5 : Form
+    public partial class SearchWinterCourses : Form
     {
-        public Form5()
+        public SearchWinterCourses()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 backButton = new Form3();
+            SearchOptions backButton = new SearchOptions();
             backButton.ShowDialog(); 
         }
     }

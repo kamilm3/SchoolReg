@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form3 : Form
+    public partial class SearchOptions : Form
     {
-        public Form3()
+        public SearchOptions()
         {
             InitializeComponent();
         }
@@ -24,19 +24,26 @@ namespace SchoolReg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form4 fallClassSearch = new Form4();
+            SearchFallCourses fallClassSearch = new SearchFallCourses();
             fallClassSearch.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form5 winterClassSearch = new Form5();
-            
+            SearchWinterCourses winterClassSearch = new SearchWinterCourses();
+
             winterClassSearch.ShowDialog();
             this.Hide();
             //this.Close();
             //System.Windows.Forms.Application.ExitThread();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form2 backButton = new Form2();
+            backButton.ShowDialog();
+            backButton.Hide();
         }
     }
 }

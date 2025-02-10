@@ -1,6 +1,6 @@
 ﻿namespace SchoolReg
 {
-    partial class Form4
+    partial class SearchFallCourses
     {
         /// <summary>
         /// Required designer variable.
@@ -72,7 +72,7 @@
             Controls.Add(label1);
             Controls.Add(textBox1);
             Name = "Form4";
-            Text = "Form4";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }

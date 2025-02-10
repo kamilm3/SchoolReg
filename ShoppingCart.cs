@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form4 : Form
+    public partial class ShoppingCart : Form
     {
-        public Form4()
+        public ShoppingCart()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            Form3 backButton = new Form3();
+            Form2 backButton = new Form2();
             backButton.ShowDialog();
             this.Hide();
         }

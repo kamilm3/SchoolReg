@@ -1,6 +1,6 @@
 ﻿namespace SchoolReg
 {
-    partial class Form5
+    partial class SearchWinterCourses
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(33, 12);
+            button1.Location = new Point(33, 32);
             button1.Name = "button1";
             button1.Size = new Size(171, 40);
             button1.TabIndex = 3;
@@ -48,7 +48,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(33, 85);
+            label1.Location = new Point(33, 112);
             label1.Name = "label1";
             label1.Size = new Size(289, 28);
             label1.TabIndex = 5;
@@ -58,7 +58,7 @@
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.DarkGray;
-            textBox1.Location = new Point(33, 125);
+            textBox1.Location = new Point(33, 152);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(929, 38);
             textBox1.TabIndex = 4;
@@ -67,12 +67,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1015, 612);
+            ClientSize = new Size(1440, 1024);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "Form5";
-            Text = "Form5";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,6 +1,6 @@
 ﻿namespace SchoolReg
 {
-    partial class Form3
+    partial class SearchOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -32,12 +32,14 @@
             bindingSource1 = new BindingSource(components);
             button1 = new Button();
             button2 = new Button();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(39, 46);
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(43, 93);
             button1.Name = "button1";
             button1.Size = new Size(929, 47);
             button1.TabIndex = 2;
@@ -47,7 +49,8 @@
             // 
             // button2
             // 
-            button2.Location = new Point(39, 99);
+            button2.Font = new Font("Segoe UI", 12F);
+            button2.Location = new Point(43, 146);
             button2.Name = "button2";
             button2.Size = new Size(929, 47);
             button2.TabIndex = 3;
@@ -55,15 +58,26 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(43, 31);
+            button3.Name = "button3";
+            button3.Size = new Size(153, 36);
+            button3.TabIndex = 4;
+            button3.Text = "Back";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1007, 623);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Form3";
-            Text = "Form3";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
@@ -73,5 +87,6 @@
         private BindingSource bindingSource1;
         private Button button1;
         private Button button2;
+        private Button button3;
     }
 }

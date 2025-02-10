@@ -10,25 +10,18 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form2 : Form
+    public partial class SearchFallCourses : Form
     {
-        public Form2()
+        public SearchFallCourses()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ShoppingCart cartPage = new ShoppingCart();   
-            cartPage.ShowDialog();
-            
-            this.Close();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            SearchOptions classSearchPage = new SearchOptions();
-            classSearchPage.Show();
+            SearchOptions backButton = new SearchOptions();
+            backButton.ShowDialog();
+            this.Hide();
         }
     }
 }

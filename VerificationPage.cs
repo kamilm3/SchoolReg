@@ -12,12 +12,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SchoolReg
 {
-    public partial class Form1 : Form
+    public partial class Verification : Form
     {
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
-        public Form1()
+        public Verification()
         {
             InitializeComponent();
 
@@ -50,7 +50,6 @@ namespace SchoolReg
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error");
-                this.Close();
             }
         }
 
@@ -68,36 +67,40 @@ namespace SchoolReg
             // emailAddressInput
             // 
             emailAddressInput.Font = new Font("Segoe UI", 14F);
-            emailAddressInput.Location = new Point(53, 240);
+            emailAddressInput.Location = new Point(514, 352);
             emailAddressInput.Name = "emailAddressInput";
             emailAddressInput.Size = new Size(439, 39);
             emailAddressInput.TabIndex = 7;
+            emailAddressInput.UseWaitCursor = true;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Light", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(53, 205);
+            label2.Location = new Point(604, 302);
             label2.Name = "label2";
             label2.Size = new Size(232, 32);
             label2.TabIndex = 6;
             label2.Text = "Enter Email Address";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
+            label2.Click += label2_Click_1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Light", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(53, 97);
+            label1.Location = new Point(619, 149);
             label1.Name = "label1";
             label1.Size = new Size(194, 32);
             label1.TabIndex = 0;
             label1.Text = "Enter Student ID";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             label1.Click += label1_Click;
             // 
             // studentIDInput
             // 
             studentIDInput.Font = new Font("Segoe UI", 14F);
-            studentIDInput.Location = new Point(54, 132);
+            studentIDInput.Location = new Point(514, 203);
             studentIDInput.Name = "studentIDInput";
             studentIDInput.Size = new Size(439, 39);
             studentIDInput.TabIndex = 2;
@@ -105,14 +108,15 @@ namespace SchoolReg
             // 
             // label3
             // 
-            label3.AutoSize = true;
+            label3.BackColor = Color.Brown;
             label3.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(192, 0, 0);
-            label3.Location = new Point(53, 27);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(-4, -2);
             label3.Name = "label3";
-            label3.Size = new Size(287, 41);
+            label3.Size = new Size(1427, 84);
             label3.TabIndex = 4;
             label3.Text = "Course Registration";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // sqlCommand1
             // 
@@ -124,24 +128,27 @@ namespace SchoolReg
             nextButton.BackColor = Color.FromArgb(192, 0, 0);
             nextButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             nextButton.ForeColor = Color.White;
-            nextButton.Location = new Point(53, 315);
+            nextButton.Location = new Point(514, 472);
             nextButton.Name = "nextButton";
-            nextButton.Size = new Size(202, 44);
+            nextButton.Size = new Size(439, 59);
             nextButton.TabIndex = 5;
             nextButton.Text = "Next";
             nextButton.UseVisualStyleBackColor = false;
             nextButton.Click += nextButton_Click;
             // 
-            // Form1
+            // Verification
             // 
-            ClientSize = new Size(526, 445);
+            BackColor = SystemColors.ControlLight;
+            ClientSize = new Size(1421, 753);
             Controls.Add(emailAddressInput);
             Controls.Add(label2);
             Controls.Add(nextButton);
             Controls.Add(label3);
             Controls.Add(studentIDInput);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "Verification";
+            StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,7 +192,7 @@ namespace SchoolReg
 
             string emailAddressBox = emailAddressInput.Text.Trim();
 
-            
+
 
             //convert input field of student ID to int
             //int studentID = int.Parse(studentIDInput.Text);
@@ -226,27 +233,29 @@ namespace SchoolReg
                     {
                         Form2 secondScreen = new Form2();
                         secondScreen.ShowDialog();
-                        this.Hide();
-
                     }
+
                     else
                     {
                         MessageBox.Show("Invalid email address or student ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.Hide();
+
 
 
             //MessageBox.Show("tEst " + studentIDInput.Text);
 
         }
 
+        private void label2_Click_1(object sender, EventArgs e)
+        {
 
+        }
     }
 }
