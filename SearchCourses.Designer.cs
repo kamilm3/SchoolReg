@@ -68,21 +68,21 @@
             searchInput.Location = new Point(61, 110);
             searchInput.Margin = new Padding(3, 2, 3, 2);
             searchInput.Name = "searchInput";
-            searchInput.Size = new Size(813, 32);
+            searchInput.Size = new Size(678, 32);
             searchInput.TabIndex = 4;
             // 
             // CoursesTable
             // 
             CoursesTable.AllowUserToAddRows = false;
             CoursesTable.AllowUserToDeleteRows = false;
-            CoursesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CoursesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CoursesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             CoursesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CoursesTable.Location = new Point(61, 200);
             CoursesTable.Margin = new Padding(3, 2, 3, 2);
             CoursesTable.Name = "CoursesTable";
             CoursesTable.RowHeadersWidth = 51;
-            CoursesTable.Size = new Size(813, 177);
+            CoursesTable.Size = new Size(678, 177);
             CoursesTable.TabIndex = 6;
             CoursesTable.Visible = false;
             // 
@@ -91,10 +91,10 @@
             searchButton.BackColor = Color.FromArgb(192, 0, 0);
             searchButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             searchButton.ForeColor = Color.White;
-            searchButton.Location = new Point(904, 110);
+            searchButton.Location = new Point(758, 107);
             searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(168, 32);
+            searchButton.Size = new Size(88, 35);
             searchButton.TabIndex = 7;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = false;
@@ -115,7 +115,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1260, 416);
+            ClientSize = new Size(858, 416);
             Controls.Add(noResultMessage);
             Controls.Add(searchButton);
             Controls.Add(CoursesTable);
