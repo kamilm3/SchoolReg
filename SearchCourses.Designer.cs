@@ -1,6 +1,6 @@
 ﻿namespace SchoolReg
 {
-    partial class SearchWinterCourses
+    partial class SearchCourses
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            label1 = new Label();
+            TitleLabel = new Label();
             searchInput = new TextBox();
             WinterCourses = new DataGridView();
             searchButton = new Button();
@@ -42,40 +42,44 @@
             button1.BackColor = Color.Black;
             button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(70, 38);
+            button1.Location = new Point(61, 28);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(200, 50);
+            button1.Size = new Size(175, 38);
             button1.TabIndex = 3;
             button1.Text = "Change Term";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // label1
+            // TitleLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(70, 115);
-            label1.Name = "label1";
-            label1.Size = new Size(289, 28);
-            label1.TabIndex = 5;
-            label1.Text = "Search for 2026 Winter classes";
+            TitleLabel.AutoSize = true;
+            TitleLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TitleLabel.Location = new Point(61, 86);
+            TitleLabel.Name = "TitleLabel";
+            TitleLabel.Size = new Size(265, 21);
+            TitleLabel.TabIndex = 5;
+            TitleLabel.Text = "Search for %year% %term% classes";
             // 
             // searchInput
             // 
             searchInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchInput.ForeColor = Color.DarkGray;
-            searchInput.Location = new Point(70, 146);
+            searchInput.Location = new Point(61, 110);
+            searchInput.Margin = new Padding(3, 2, 3, 2);
             searchInput.Name = "searchInput";
-            searchInput.Size = new Size(929, 38);
+            searchInput.Size = new Size(813, 32);
             searchInput.TabIndex = 4;
             // 
             // WinterCourses
             // 
+            WinterCourses.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             WinterCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WinterCourses.Location = new Point(70, 267);
+            WinterCourses.Location = new Point(61, 200);
+            WinterCourses.Margin = new Padding(3, 2, 3, 2);
             WinterCourses.Name = "WinterCourses";
             WinterCourses.RowHeadersWidth = 51;
-            WinterCourses.Size = new Size(929, 676);
+            WinterCourses.Size = new Size(813, 177);
             WinterCourses.TabIndex = 6;
             WinterCourses.Visible = false;
             // 
@@ -84,9 +88,10 @@
             searchButton.BackColor = Color.FromArgb(192, 0, 0);
             searchButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             searchButton.ForeColor = Color.White;
-            searchButton.Location = new Point(1033, 146);
+            searchButton.Location = new Point(904, 110);
+            searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(192, 38);
+            searchButton.Size = new Size(168, 32);
             searchButton.TabIndex = 7;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = false;
@@ -96,26 +101,26 @@
             // 
             noResultMessage.AutoSize = true;
             noResultMessage.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            noResultMessage.Location = new Point(70, 209);
+            noResultMessage.Location = new Point(61, 157);
             noResultMessage.Name = "noResultMessage";
-            noResultMessage.Size = new Size(77, 31);
+            noResultMessage.Size = new Size(166, 25);
             noResultMessage.TabIndex = 8;
-            noResultMessage.Text = "label2";
+            noResultMessage.Text = "no result message";
             noResultMessage.Visible = false;
             // 
-            // SearchWinterCourses
+            // SearchCourses
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1440, 1024);
+            ClientSize = new Size(1260, 416);
             Controls.Add(noResultMessage);
             Controls.Add(searchButton);
             Controls.Add(WinterCourses);
-            Controls.Add(label1);
+            Controls.Add(TitleLabel);
             Controls.Add(searchInput);
             Controls.Add(button1);
-            Name = "SearchWinterCourses";
-            WindowState = FormWindowState.Maximized;
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "SearchCourses";
             ((System.ComponentModel.ISupportInitialize)WinterCourses).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -124,7 +129,7 @@
         #endregion
 
         private Button button1;
-        private Label label1;
+        private Label TitleLabel;
         private TextBox searchInput;
         private DataGridView WinterCourses;
         private Button searchButton;

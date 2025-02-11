@@ -1,204 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using Microsoft.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace CMPT391_Project
+namespace SchoolReg
 {
-    public partial class Form1 : Form
+    public partial class Verification : Form
     {
-        public SqlConnection myConnection;
-        public SqlCommand myCommand;
-        public SqlDataReader myReader;
-
-        public static Form1 instance;
-
-        public Form1()
-            
-        {
-            InitializeComponent();
-
-            instance = this;
+        private Label label2;
+        private Label header;
+        private SqlCommand sqlCommand1;
+        private System.Windows.Forms.Button nextButton;
 
 
-            myConnection = new SqlConnection("user id=admin3;" + // Username
-                                  "password=admin;" + // Password
-                                  "server=LAPTOP-6TEGHEN2;" + // Server name
-                                  "TrustServerCertificate=True;" +
-                                  "database=Project_291; " + // Database
-                                  "connection timeout=30"); // Timeout in seconds
-            
-            
-            /*
-            myConnection = new SqlConnection("user id=admin3;" + // Username
-                                  "password=admin;" + // Password
-                                  "server=Kamil\\MSSQLSERVER03;" + // Server name
-                                  "TrustServerCertificate=True;" +
-                                  "database=project291; " + // Database
-                                  "connection timeout=30"); // Timeout in seconds
-            
-            */
+        private System.Windows.Forms.TextBox studentIDInput;
+        private System.Windows.Forms.TextBox emailAddressInput;
+        private Label label1;
 
-            // Initialize the connection
-            /*
-            myConnection = new SqlConnection("user id=Memoh;" + // Username
-                                              "password=memoh4321;" + // Password
-                                              "server=DESKTOP-H6FU9US\\MSSQLSERVER01;" + // Server name
-                                              "TrustServerCertificate=True;" +
-                                              "database=project291; " + // Database
-                                              "connection timeout=30"); // Timeout in seconds
-            */
-
-            /*
-            myConnection = new SqlConnection("user id=admin3;" + // Username
-                                             "password=admin;" + // Password
-                                             "server=DESKTOP-6QG008O;" + // Server name
-                                             "TrustServerCertificate=True;" +
-                                             "database=project291; " + // Database
-                                             "connection timeout=30"); // Timeout in seconds
-            */
-
-            try
-            {
-                myConnection.Open(); // Open the connection
-                myCommand = new SqlCommand();
-                myCommand.Connection = myConnection; // Link the command to the connection
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString(), "Error");
-                this.Close();
-            }
-        }
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
-        { 
+        {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Verification));
+            emailAddressInput = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
+            studentIDInput = new TextBox();
+            header = new Label();
+            sqlCommand1 = new SqlCommand();
+            nextButton = new Button();
             SuspendLayout();
             // 
-            // button2
+            // emailAddressInput
             // 
-            /*
-            button2.Location = new Point(422, 440);
-            button2.Name = "button2";
-            button2.Size = new Size(316, 53);
-            button2.TabIndex = 1;
-            button2.Text = "Enter";
-            button2.UseVisualStyleBackColor = true;
-            */
-            //button2.Click += button2_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 14F);
-            textBox1.Location = new Point(422, 92);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(316, 39);
-            textBox1.TabIndex = 2;
-            // 
-            // studentID
-            // 
-            studentID.AutoSize = true;
-            studentID.Font = new Font("Myanmar Text", 14F);
-            studentID.Location = new Point(481, 46);
-            studentID.Name = "studentID";
-            studentID.Size = new Size(195, 43);
-            studentID.TabIndex = 3;
-            studentID.Text = "Enter Student ID";
-            //studentID.Click += studentID_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Myanmar Text", 14F);
-            label1.Location = new Point(548, 168);
-            label1.Name = "label1";
-            label1.Size = new Size(65, 43);
-            label1.TabIndex = 5;
-            label1.Text = "Year";
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 14F);
-            textBox2.Location = new Point(422, 214);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(316, 39);
-            textBox2.TabIndex = 4;
+            resources.ApplyResources(emailAddressInput, "emailAddressInput");
+            emailAddressInput.Name = "emailAddressInput";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Myanmar Text", 14F);
-            label2.Location = new Point(539, 294);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(74, 43);
-            label2.TabIndex = 7;
-            label2.Text = "Term";
-            //label2.Click += label2_Click;
             // 
-            // textBox3
+            // label1
             // 
-            textBox3.Font = new Font("Segoe UI", 14F);
-            textBox3.Location = new Point(422, 340);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(316, 39);
-            textBox3.TabIndex = 6;
+            resources.ApplyResources(label1, "label1");
+            label1.Name = "label1";
+            label1.Click += label1_Click;
             // 
-            // Form1
+            // studentIDInput
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            resources.ApplyResources(studentIDInput, "studentIDInput");
+            studentIDInput.Name = "studentIDInput";
+            studentIDInput.TextChanged += textBox1_TextChanged;
+            // 
+            // header
+            // 
+            resources.ApplyResources(header, "header");
+            header.BackColor = Color.Brown;
+            header.ForeColor = Color.White;
+            header.Name = "header";
+            // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // nextButton
+            // 
+            resources.ApplyResources(nextButton, "nextButton");
+            nextButton.BackColor = Color.FromArgb(192, 0, 0);
+            nextButton.ForeColor = Color.White;
+            nextButton.Name = "nextButton";
+            nextButton.UseVisualStyleBackColor = false;
+            nextButton.Click += nextButton_Click;
+            // 
+            // Verification
+            // 
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1223, 629);
+            BackColor = SystemColors.ControlLight;
+            Controls.Add(emailAddressInput);
             Controls.Add(label2);
-            Controls.Add(textBox3);
+            Controls.Add(nextButton);
+            Controls.Add(header);
+            Controls.Add(studentIDInput);
             Controls.Add(label1);
-            Controls.Add(textBox2);
-            Controls.Add(studentID);
-            Controls.Add(textBox1);
-            //Controls.Add(button2);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "Verification";
             ResumeLayout(false);
             PerformLayout();
         }
-
-        #endregion
-        //private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private Label studentID;
-        private Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private int button2_Click;
     }
 }

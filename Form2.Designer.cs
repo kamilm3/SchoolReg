@@ -42,9 +42,10 @@ namespace SchoolReg
             searchButton.BackColor = Color.FromArgb(192, 0, 0);
             searchButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchButton.ForeColor = Color.White;
-            searchButton.Location = new Point(684, 154);
+            searchButton.Location = new Point(313, 216);
+            searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
-            searchButton.Size = new Size(600, 60);
+            searchButton.Size = new Size(525, 45);
             searchButton.TabIndex = 0;
             searchButton.Text = "Class Search";
             searchButton.UseVisualStyleBackColor = false;
@@ -55,9 +56,10 @@ namespace SchoolReg
             cartButton.BackColor = Color.FromArgb(192, 0, 0);
             cartButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cartButton.ForeColor = Color.White;
-            cartButton.Location = new Point(684, 252);
+            cartButton.Location = new Point(313, 289);
+            cartButton.Margin = new Padding(3, 2, 3, 2);
             cartButton.Name = "cartButton";
-            cartButton.Size = new Size(600, 60);
+            cartButton.Size = new Size(525, 45);
             cartButton.TabIndex = 1;
             cartButton.Text = "Cart";
             cartButton.UseVisualStyleBackColor = false;
@@ -68,9 +70,9 @@ namespace SchoolReg
             header.BackColor = Color.Brown;
             header.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             header.ForeColor = Color.White;
-            header.Location = new Point(1, -1);
+            header.Location = new Point(0, -1);
             header.Name = "header";
-            header.Size = new Size(2000, 84);
+            header.Size = new Size(1149, 63);
             header.TabIndex = 5;
             header.Text = "Course Registration";
             header.TextAlign = ContentAlignment.MiddleCenter;
@@ -79,24 +81,24 @@ namespace SchoolReg
             // 
             testLabel.AutoSize = true;
             testLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            testLabel.Location = new Point(48, 119);
+            testLabel.Location = new Point(42, 89);
             testLabel.Name = "testLabel";
-            testLabel.Size = new Size(91, 38);
+            testLabel.Size = new Size(71, 30);
             testLabel.TabIndex = 6;
             testLabel.Text = "label1";
             testLabel.Visible = false;
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1601, 601);
+            ClientSize = new Size(1149, 716);
             Controls.Add(testLabel);
             Controls.Add(header);
             Controls.Add(cartButton);
             Controls.Add(searchButton);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form2";
-            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
             PerformLayout();
         }

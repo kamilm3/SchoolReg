@@ -24,13 +24,13 @@ namespace SchoolReg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SearchFallCourses fallClassSearch = new SearchFallCourses();
+            SearchCourses fallClassSearch = new SearchCourses(2025, "Fall");
             fallClassSearch.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SearchWinterCourses winterClassSearch = new SearchWinterCourses();
+            SearchCourses winterClassSearch = new SearchCourses(2026, "Winter");
 
             winterClassSearch.ShowDialog();
             this.Hide();

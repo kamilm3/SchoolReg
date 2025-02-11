@@ -39,9 +39,10 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(70, 114);
+            button1.Location = new Point(61, 86);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(929, 47);
+            button1.Size = new Size(774, 35);
             button1.TabIndex = 2;
             button1.Text = "2025 Fall";
             button1.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F);
-            button2.Location = new Point(70, 167);
+            button2.Location = new Point(61, 125);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(929, 47);
+            button2.Size = new Size(774, 35);
             button2.TabIndex = 3;
             button2.Text = "2026 Winter";
             button2.UseVisualStyleBackColor = true;
@@ -63,9 +65,10 @@
             button3.BackColor = Color.FromArgb(192, 0, 0);
             button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(70, 38);
+            button3.Location = new Point(61, 28);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(200, 50);
+            button3.Size = new Size(175, 38);
             button3.TabIndex = 4;
             button3.Text = "Back";
             button3.UseVisualStyleBackColor = false;
@@ -73,14 +76,14 @@
             // 
             // SearchOptions
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1007, 623);
+            ClientSize = new Size(881, 467);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "SearchOptions";
-            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
