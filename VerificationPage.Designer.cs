@@ -25,6 +25,7 @@ namespace SchoolReg
             header = new Label();
             sqlCommand1 = new SqlCommand();
             nextButton = new Button();
+            PopulateButton = new Button();
             SuspendLayout();
             // 
             // emailAddressInput
@@ -70,11 +71,19 @@ namespace SchoolReg
             nextButton.UseVisualStyleBackColor = false;
             nextButton.Click += nextButton_Click;
             // 
+            // PopulateButton
+            // 
+            resources.ApplyResources(PopulateButton, "PopulateButton");
+            PopulateButton.Name = "PopulateButton";
+            PopulateButton.UseVisualStyleBackColor = true;
+            PopulateButton.Click += button1_Click;
+            // 
             // Verification
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
+            Controls.Add(PopulateButton);
             Controls.Add(emailAddressInput);
             Controls.Add(label2);
             Controls.Add(nextButton);
@@ -85,5 +94,7 @@ namespace SchoolReg
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private Button PopulateButton;
     }
 }

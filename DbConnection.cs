@@ -7,6 +7,9 @@ namespace SchoolReg
 
         public static SqlConnection Connection { get; private set; }
         public static SqlCommand Command { get; private set; }
+        //DEFINE SQL DATA READER INLINE AT POINT OF USE
+        //FOR EXAMPLE: using var reader = cmd.ExecuteReader();
+        //public static SqlDataReader Reader { get; private set; }
 
 
         static DbConnection()

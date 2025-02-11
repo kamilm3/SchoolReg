@@ -9,7 +9,7 @@ namespace SchoolReg
         public Verification()
         {
             InitializeComponent();
-            
+
         }
 
         private void studentID_Click(object sender, EventArgs e)
@@ -109,6 +109,12 @@ namespace SchoolReg
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            studentIDInput.Text = "1";
+            emailAddressInput.Text = "alice@university.edu";
         }
     }
 }

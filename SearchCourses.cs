@@ -49,29 +49,28 @@ namespace SchoolReg
                 string searchQuery = "Select CourseName, Year, Term from Courses where CourseName like @courseName and Term = @term";
 
 
-                using SqlCommand cmd = new SqlCommand(searchQuery, DbConnection.Connection);
+                using var cmd = new SqlCommand(searchQuery, DbConnection.Connection);
                 cmd.Parameters.AddWithValue("@courseName", "%" + courseName + "%");
                 cmd.Parameters.AddWithValue("@term", Term);
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
+                var adapter = new SqlDataAdapter(cmd);
+                var dt = new DataTable();
 
                 try
                 {
                     adapter.Fill(dt);
 
-                    WinterCourses.DataSource = dt;
+                    CoursesTable.DataSource = dt;
 
-
-                    if (WinterCourses.Rows.Count == 1)
+                    if (CoursesTable.Rows.Count == 0)
                     {
                         noResultMessage.Text = "There are no results for " + courseName;
                         noResultMessage.Visible = true;
                     }
-
                     else
                     {
-                        WinterCourses.Visible = true;
+                        CoursesTable.Visible = true;
+                        noResultMessage.Visible = false;
                     }
                 }
                 catch (Exception ex)

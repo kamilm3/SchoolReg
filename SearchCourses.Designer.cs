@@ -31,10 +31,10 @@
             button1 = new Button();
             TitleLabel = new Label();
             searchInput = new TextBox();
-            WinterCourses = new DataGridView();
+            CoursesTable = new DataGridView();
             searchButton = new Button();
             noResultMessage = new Label();
-            ((System.ComponentModel.ISupportInitialize)WinterCourses).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CoursesTable).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -71,17 +71,20 @@
             searchInput.Size = new Size(813, 32);
             searchInput.TabIndex = 4;
             // 
-            // WinterCourses
+            // CoursesTable
             // 
-            WinterCourses.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            WinterCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WinterCourses.Location = new Point(61, 200);
-            WinterCourses.Margin = new Padding(3, 2, 3, 2);
-            WinterCourses.Name = "WinterCourses";
-            WinterCourses.RowHeadersWidth = 51;
-            WinterCourses.Size = new Size(813, 177);
-            WinterCourses.TabIndex = 6;
-            WinterCourses.Visible = false;
+            CoursesTable.AllowUserToAddRows = false;
+            CoursesTable.AllowUserToDeleteRows = false;
+            CoursesTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CoursesTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            CoursesTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            CoursesTable.Location = new Point(61, 200);
+            CoursesTable.Margin = new Padding(3, 2, 3, 2);
+            CoursesTable.Name = "CoursesTable";
+            CoursesTable.RowHeadersWidth = 51;
+            CoursesTable.Size = new Size(813, 177);
+            CoursesTable.TabIndex = 6;
+            CoursesTable.Visible = false;
             // 
             // searchButton
             // 
@@ -115,13 +118,13 @@
             ClientSize = new Size(1260, 416);
             Controls.Add(noResultMessage);
             Controls.Add(searchButton);
-            Controls.Add(WinterCourses);
+            Controls.Add(CoursesTable);
             Controls.Add(TitleLabel);
             Controls.Add(searchInput);
             Controls.Add(button1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchCourses";
-            ((System.ComponentModel.ISupportInitialize)WinterCourses).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CoursesTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -131,7 +134,7 @@
         private Button button1;
         private Label TitleLabel;
         private TextBox searchInput;
-        private DataGridView WinterCourses;
+        private DataGridView CoursesTable;
         private Button searchButton;
         private Label noResultMessage;
     }
