@@ -64,7 +64,7 @@
             // searchInput
             // 
             searchInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchInput.ForeColor = Color.DarkGray;
+            searchInput.ForeColor = Color.Black;
             searchInput.Location = new Point(61, 110);
             searchInput.Margin = new Padding(3, 2, 3, 2);
             searchInput.Name = "searchInput";
@@ -82,7 +82,7 @@
             CoursesTable.Margin = new Padding(3, 2, 3, 2);
             CoursesTable.Name = "CoursesTable";
             CoursesTable.RowHeadersWidth = 51;
-            CoursesTable.Size = new Size(678, 177);
+            CoursesTable.Size = new Size(678, 238);
             CoursesTable.TabIndex = 6;
             CoursesTable.Visible = false;
             // 
@@ -115,7 +115,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(858, 416);
+            ClientSize = new Size(912, 477);
             Controls.Add(noResultMessage);
             Controls.Add(searchButton);
             Controls.Add(CoursesTable);

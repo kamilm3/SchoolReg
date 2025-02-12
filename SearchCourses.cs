@@ -46,7 +46,7 @@ namespace SchoolReg
             try
             {
                 //SQL query to pass to server
-                string searchQuery = "Select CourseName, Year, Term from Courses where CourseName like @courseName and Term = @term";
+                string searchQuery = "Select CourseCode, CourseName, Year, Term from Courses where CourseName like @courseName and Term = @term";
 
 
                 using var cmd = new SqlCommand(searchQuery, DbConnection.Connection);

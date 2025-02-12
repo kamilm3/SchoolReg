@@ -9,6 +9,7 @@ namespace SchoolReg
         public Verification()
         {
             InitializeComponent();
+            //DbConnection.Connection;
 
         }
 
@@ -46,11 +47,7 @@ namespace SchoolReg
 
 
 
-            //convert input field of student ID to int
-            //int studentID = int.Parse(studentIDInput.Text);
-            //int studentID = int.Parse(studentIDBox);
 
-            //MessageBox.Show("Test" + emailAddressBox + studentIDBox);
 
             if (string.IsNullOrEmpty(emailAddressBox) || string.IsNullOrEmpty(studentIDBox))
             {

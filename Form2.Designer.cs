@@ -90,9 +90,10 @@ namespace SchoolReg
             // 
             // Form2
             // 
+            AccessibleRole = AccessibleRole.Separator;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1149, 716);
+            ClientSize = new Size(1148, 807);
             Controls.Add(testLabel);
             Controls.Add(header);
             Controls.Add(cartButton);

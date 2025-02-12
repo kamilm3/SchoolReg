@@ -26,6 +26,7 @@ namespace SchoolReg
         {
             SearchCourses fallClassSearch = new SearchCourses(2025, "Fall");
             fallClassSearch.ShowDialog();
+            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
