@@ -34,6 +34,7 @@
             CoursesTable = new DataGridView();
             searchButton = new Button();
             noResultMessage = new Label();
+            addCartButton = new Button();
             ((System.ComponentModel.ISupportInitialize)CoursesTable).BeginInit();
             SuspendLayout();
             // 
@@ -111,11 +112,26 @@
             noResultMessage.Text = "no result message";
             noResultMessage.Visible = false;
             // 
+            // addCartButton
+            // 
+            addCartButton.BackColor = Color.Gray;
+            addCartButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addCartButton.ForeColor = Color.White;
+            addCartButton.Location = new Point(61, 474);
+            addCartButton.Margin = new Padding(3, 2, 3, 2);
+            addCartButton.Name = "addCartButton";
+            addCartButton.Size = new Size(147, 35);
+            addCartButton.TabIndex = 9;
+            addCartButton.Text = "Add to Cart";
+            addCartButton.UseVisualStyleBackColor = false;
+            addCartButton.Visible = false;
+            // 
             // SearchCourses
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 477);
+            ClientSize = new Size(912, 530);
+            Controls.Add(addCartButton);
             Controls.Add(noResultMessage);
             Controls.Add(searchButton);
             Controls.Add(CoursesTable);
@@ -137,5 +153,6 @@
         private DataGridView CoursesTable;
         private Button searchButton;
         private Label noResultMessage;
+        private Button addCartButton;
     }
 }

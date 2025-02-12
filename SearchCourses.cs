@@ -71,6 +71,7 @@ namespace SchoolReg
                     {
                         CoursesTable.Visible = true;
                         noResultMessage.Visible = false;
+                        addCartButton.Visible = true;
                     }
                 }
                 catch (Exception ex)
