@@ -2,20 +2,20 @@ CREATE VIEW vwEnrollCapacity
 WITH SCHEMABINDING
 AS
 SELECT 
-    s.SectionID,
-    s.CourseID,
-    s.Term,
-    s.Year,
-    s.Capacity,
-    COUNT_BIG(sc.StudentID) AS EnrolledCount,
+    c.CourseID,
+    c.Year,
+    c.Term,
+    cr.Capacity,
+    COUNT_BIG(e.StudentID) AS EnrolledCount,
     COUNT_BIG(tc.CourseID) AS PrereqCoursesCompleted
-FROM Section s
-LEFT JOIN ShoppingCart sc ON s.SectionID = sc.SectionID
-LEFT JOIN TakenCourses tc ON sc.StudentID = tc.StudentID
-GROUP BY s.SectionID, s.CourseID, s.Term, s.Year, s.Capacity;
+FROM Courses c
+JOIN Classroom cr ON c.ClassroomID = cr.ClassroomID  -- capacity from Classroom table
+LEFT JOIN Enroll e ON c.CourseID = e.CourseID  -- countig enrolled students
+LEFT JOIN TakenCourses tc ON e.StudentID = tc.StudentID  -- counting prerequisites completed
+GROUP BY c.CourseID, c.Year, c.Term, cr.Capacity;
 GO
 
 -- unique clustered index
-CREATE UNIQUE CLUSTERED INDEX IDX_vwEnrollCapacity_SectionID
-ON vwEnrollCapacity (SectionID);
+CREATE UNIQUE CLUSTERED INDEX IDX_vwEnrollCapacity_CourseID
+ON vwEnrollCapacity (CourseID, Year, Term);
 GO
