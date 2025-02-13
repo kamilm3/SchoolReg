@@ -91,7 +91,9 @@ namespace SchoolReg
                         secondScreen.ShowDialog();
                         this.Hide();
 
-
+                        // Initialize session
+                        Session.CurrentSession.Email = emailAddressBox;
+                        Session.CurrentSession.StudentID = studentID;
 
                     }
 

@@ -3,11 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace SchoolReg
 {
@@ -26,11 +29,9 @@ namespace SchoolReg
             TitleLabel.Text = TitleLabel.Text.Replace("%year%", Year.ToString()).Replace("%term%", Term.ToString());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ChangeTermButton_Click(object sender, EventArgs e)
         {
-            SearchOptions backButton = new SearchOptions();
-            backButton.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace SchoolReg
             try
             {
                 //SQL query to pass to server
-                string searchQuery = "Select CourseCode, CourseName, Year, Term from Courses where CourseName like @courseName and Term = @term";
+                string searchQuery = "Select CourseID, CourseCode, CourseName, Year, Term from Courses where CourseName like @courseName and Term = @term";
 
 
                 using var cmd = new SqlCommand(searchQuery, DbConnection.Connection);
@@ -56,31 +57,57 @@ namespace SchoolReg
                 var adapter = new SqlDataAdapter(cmd);
                 var dt = new DataTable();
 
-                try
+                adapter.Fill(dt);
+
+                CoursesTable.DataSource = dt;
+
+                CoursesTable.Columns["CourseID"].Visible = false;
+
+                if (CoursesTable.Rows.Count == 0)
                 {
-                    adapter.Fill(dt);
-
-                    CoursesTable.DataSource = dt;
-
-                    if (CoursesTable.Rows.Count == 0)
-                    {
-                        noResultMessage.Text = "There are no results for " + courseName;
-                        noResultMessage.Visible = true;
-                    }
-                    else
-                    {
-                        CoursesTable.Visible = true;
-                        noResultMessage.Visible = false;
-                        addCartButton.Visible = true;
-                    }
+                    NoResultLabel.Text = "There are no results for " + courseName;
+                    NoResultLabel.Visible = true;
                 }
-                catch (Exception ex)
+                else
                 {
+                    CoursesTable.Visible = true;
+                    NoResultLabel.Visible = false;
+                    addCartButton.Visible = true;
                 }
             }
             catch (Exception ex)
             {
             }
+        }
+
+        private void addCartButton_Click(object sender, EventArgs e)
+        {
+            if (Session.CurrentSession == null)
+            {
+                MessageBox.Show("Please login to add courses to your cart");
+                return;
+            }
+
+            foreach (DataGridViewRow row in CoursesTable.SelectedRows)
+            {
+                int courseId = Convert.ToInt32(row.Cells["CourseID"].Value);
+
+                var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
+
+                using var cmd = new SqlCommand(query, DbConnection.Connection);
+                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession.StudentID);
+                cmd.Parameters.AddWithValue("@CourseID", courseId);
+                cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void ViewCartButton_Click(object sender, EventArgs e)
+        {
+            var cartPage = new ShoppingCart();
+            this.Hide();
+            cartPage.ShowDialog();
+            this.Show();
         }
     }
 }

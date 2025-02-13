@@ -30,12 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             label1 = new Label();
-            button3 = new Button();
+            BackButton = new Button();
             bindingSource1 = new BindingSource(components);
             dropDownTerm = new ComboBox();
-            dataGridView1 = new DataGridView();
+            CartDataGridView = new DataGridView();
+            NoResultLabel = new Label();
+            EnrollButton = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CartDataGridView).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -49,19 +51,19 @@
             label1.TabIndex = 0;
             label1.Text = "Shopping cart";
             // 
-            // button3
+            // BackButton
             // 
-            button3.BackColor = Color.FromArgb(192, 0, 0);
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(61, 28);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(175, 38);
-            button3.TabIndex = 5;
-            button3.Text = "Back";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            BackButton.BackColor = Color.FromArgb(192, 0, 0);
+            BackButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BackButton.ForeColor = Color.White;
+            BackButton.Location = new Point(61, 28);
+            BackButton.Margin = new Padding(3, 2, 3, 2);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(175, 38);
+            BackButton.TabIndex = 5;
+            BackButton.Text = "Back";
+            BackButton.UseVisualStyleBackColor = false;
+            BackButton.Click += BackButton_Click;
             // 
             // dropDownTerm
             // 
@@ -76,30 +78,63 @@
             dropDownTerm.TabIndex = 6;
             dropDownTerm.Text = "Choose term";
             // 
-            // dataGridView1
+            // CartDataGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(61, 161);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(813, 507);
-            dataGridView1.TabIndex = 7;
+            CartDataGridView.AllowUserToAddRows = false;
+            CartDataGridView.AllowUserToDeleteRows = false;
+            CartDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            CartDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            CartDataGridView.Location = new Point(61, 182);
+            CartDataGridView.Margin = new Padding(3, 2, 3, 2);
+            CartDataGridView.Name = "CartDataGridView";
+            CartDataGridView.RowHeadersWidth = 51;
+            CartDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            CartDataGridView.Size = new Size(813, 486);
+            CartDataGridView.TabIndex = 7;
+            // 
+            // NoResultLabel
+            // 
+            NoResultLabel.AutoSize = true;
+            NoResultLabel.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NoResultLabel.Location = new Point(61, 150);
+            NoResultLabel.Name = "NoResultLabel";
+            NoResultLabel.Size = new Size(145, 25);
+            NoResultLabel.TabIndex = 9;
+            NoResultLabel.Text = "No Result Label";
+            NoResultLabel.Visible = false;
+            // 
+            // EnrollButton
+            // 
+            EnrollButton.BackColor = Color.Gray;
+            EnrollButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            EnrollButton.ForeColor = Color.White;
+            EnrollButton.Location = new Point(61, 681);
+            EnrollButton.Margin = new Padding(3, 2, 3, 2);
+            EnrollButton.Name = "EnrollButton";
+            EnrollButton.Size = new Size(153, 35);
+            EnrollButton.TabIndex = 10;
+            EnrollButton.Text = "Enroll Into All";
+            EnrollButton.UseVisualStyleBackColor = false;
+            EnrollButton.Visible = false;
+            EnrollButton.Click += EnrollButton_Click;
             // 
             // ShoppingCart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1173, 727);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(1173, 732);
+            Controls.Add(EnrollButton);
+            Controls.Add(NoResultLabel);
+            Controls.Add(CartDataGridView);
             Controls.Add(dropDownTerm);
-            Controls.Add(button3);
+            Controls.Add(BackButton);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ShoppingCart";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form6";
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CartDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,9 +142,11 @@
         #endregion
 
         private Label label1;
-        private Button button3;
+        private Button BackButton;
         private BindingSource bindingSource1;
         private ComboBox dropDownTerm;
-        private DataGridView dataGridView1;
+        private DataGridView CartDataGridView;
+        private Label NoResultLabel;
+        private Button EnrollButton;
     }
 }

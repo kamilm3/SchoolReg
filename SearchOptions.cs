@@ -25,26 +25,24 @@ namespace SchoolReg
         private void button1_Click(object sender, EventArgs e)
         {
             SearchCourses fallClassSearch = new SearchCourses(2025, "Fall");
-            fallClassSearch.ShowDialog();
             this.Hide();
+            fallClassSearch.ShowDialog();
+            this.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SearchCourses winterClassSearch = new SearchCourses(2026, "Winter");
-
-            winterClassSearch.ShowDialog();
             this.Hide();
-            //this.Close();
+            winterClassSearch.ShowDialog();
+            this.Show();
             //System.Windows.Forms.Application.ExitThread();
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            Form2 backButton = new Form2();
-            backButton.ShowDialog();
-            backButton.Hide();
+            this.Close();
         }
     }
 }

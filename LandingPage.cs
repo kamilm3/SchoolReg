@@ -10,35 +10,28 @@ using System.Windows.Forms;
 
 namespace SchoolReg
 {
-    public partial class Form2 : Form
-
-
+    public partial class LandingPage : Form
     {
-        //public Form2(int studentID, string emailAddress)
-        public Form2()
-
-
+        public LandingPage()
         {
             InitializeComponent();
-            string studentEmail = Verification.studentEmail;
-            //MessageBox.Show("Passed email address: " + studentEmail);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ShoppingCart cartPage = new ShoppingCart();
+            this.Hide();
             cartPage.ShowDialog();
+            this.Show();
 
-            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SearchOptions classSearchPage = new SearchOptions();
-            classSearchPage.Show();
             this.Hide();
+            classSearchPage.ShowDialog();
+            this.Show();
         }
-
-
     }
 }

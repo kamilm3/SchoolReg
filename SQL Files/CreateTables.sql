@@ -36,9 +36,17 @@ CREATE TABLE Courses (
     ClassroomID INT FOREIGN KEY REFERENCES Classroom(ClassroomID),
     Credits INT,
     CourseName VARCHAR(255),
-	Year INT NOT NULL,
-	Term VARCHAR(10) NOT NULL,
-	CourseCode VARCHAR(10) NOT NULL
+    Year INT NOT NULL,
+    Term VARCHAR(10) NOT NULL,
+    CourseCode VARCHAR(10) NOT NULL,
+    StartTimeMins INT CHECK (StartTimeMins >= 0 AND StartTimeMins <= 1440),
+    DurationMins INT CHECK (DurationMins > 0 AND DurationMins <= 480),
+    DayOfWeek INT CHECK (DayOfWeek >= 0 AND DayOfWeek <= 6)
+);
+
+CREATE TABLE DayOfWeek (
+    DayID INT PRIMARY KEY,
+    DayName VARCHAR(10)
 );
 
 CREATE TABLE Student (

@@ -3,7 +3,7 @@
 namespace SchoolReg
 {
     //public static Form2 instance;
-    partial class Form2
+    partial class LandingPage
     {
         /// <summary>
         /// Required designer variable.

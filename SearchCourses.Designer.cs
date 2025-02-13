@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            ChangeTermButton = new Button();
             TitleLabel = new Label();
             searchInput = new TextBox();
             CoursesTable = new DataGridView();
             searchButton = new Button();
-            noResultMessage = new Label();
+            NoResultLabel = new Label();
             addCartButton = new Button();
+            ViewCartButton = new Button();
             ((System.ComponentModel.ISupportInitialize)CoursesTable).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // ChangeTermButton
             // 
-            button1.BackColor = Color.Black;
-            button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(61, 28);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 38);
-            button1.TabIndex = 3;
-            button1.Text = "Change Term";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            ChangeTermButton.BackColor = Color.Black;
+            ChangeTermButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ChangeTermButton.ForeColor = Color.White;
+            ChangeTermButton.Location = new Point(61, 28);
+            ChangeTermButton.Margin = new Padding(3, 2, 3, 2);
+            ChangeTermButton.Name = "ChangeTermButton";
+            ChangeTermButton.Size = new Size(175, 38);
+            ChangeTermButton.TabIndex = 3;
+            ChangeTermButton.Text = "Change Term";
+            ChangeTermButton.UseVisualStyleBackColor = false;
+            ChangeTermButton.Click += ChangeTermButton_Click;
             // 
             // TitleLabel
             // 
@@ -82,7 +83,9 @@
             CoursesTable.Location = new Point(61, 200);
             CoursesTable.Margin = new Padding(3, 2, 3, 2);
             CoursesTable.Name = "CoursesTable";
+            CoursesTable.ReadOnly = true;
             CoursesTable.RowHeadersWidth = 51;
+            CoursesTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             CoursesTable.Size = new Size(678, 238);
             CoursesTable.TabIndex = 6;
             CoursesTable.Visible = false;
@@ -101,16 +104,16 @@
             searchButton.UseVisualStyleBackColor = false;
             searchButton.Click += searchButton_Click;
             // 
-            // noResultMessage
+            // NoResultLabel
             // 
-            noResultMessage.AutoSize = true;
-            noResultMessage.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            noResultMessage.Location = new Point(61, 157);
-            noResultMessage.Name = "noResultMessage";
-            noResultMessage.Size = new Size(166, 25);
-            noResultMessage.TabIndex = 8;
-            noResultMessage.Text = "no result message";
-            noResultMessage.Visible = false;
+            NoResultLabel.AutoSize = true;
+            NoResultLabel.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NoResultLabel.Location = new Point(61, 157);
+            NoResultLabel.Name = "NoResultLabel";
+            NoResultLabel.Size = new Size(133, 25);
+            NoResultLabel.TabIndex = 8;
+            NoResultLabel.Text = "no result label";
+            NoResultLabel.Visible = false;
             // 
             // addCartButton
             // 
@@ -125,21 +128,39 @@
             addCartButton.Text = "Add to Cart";
             addCartButton.UseVisualStyleBackColor = false;
             addCartButton.Visible = false;
+            addCartButton.Click += addCartButton_Click;
+            // 
+            // ViewCartButton
+            // 
+            ViewCartButton.BackColor = Color.Gray;
+            ViewCartButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ViewCartButton.ForeColor = Color.White;
+            ViewCartButton.Location = new Point(592, 474);
+            ViewCartButton.Margin = new Padding(3, 2, 3, 2);
+            ViewCartButton.Name = "ViewCartButton";
+            ViewCartButton.Size = new Size(147, 35);
+            ViewCartButton.TabIndex = 10;
+            ViewCartButton.Text = "View Cart";
+            ViewCartButton.UseVisualStyleBackColor = false;
+            ViewCartButton.Visible = false;
+            ViewCartButton.Click += ViewCartButton_Click;
             // 
             // SearchCourses
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(912, 530);
+            Controls.Add(ViewCartButton);
             Controls.Add(addCartButton);
-            Controls.Add(noResultMessage);
+            Controls.Add(NoResultLabel);
             Controls.Add(searchButton);
             Controls.Add(CoursesTable);
             Controls.Add(TitleLabel);
             Controls.Add(searchInput);
-            Controls.Add(button1);
+            Controls.Add(ChangeTermButton);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchCourses";
+            StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)CoursesTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -147,12 +168,13 @@
 
         #endregion
 
-        private Button button1;
+        private Button ChangeTermButton;
         private Label TitleLabel;
         private TextBox searchInput;
         private DataGridView CoursesTable;
         private Button searchButton;
-        private Label noResultMessage;
+        private Label NoResultLabel;
         private Button addCartButton;
+        private Button ViewCartButton;
     }
 }

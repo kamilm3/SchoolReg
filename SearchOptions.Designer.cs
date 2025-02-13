@@ -32,7 +32,7 @@
             bindingSource1 = new BindingSource(components);
             button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            BackButton = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -60,30 +60,31 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
+            // BackButton
             // 
-            button3.BackColor = Color.FromArgb(192, 0, 0);
-            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(61, 28);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(175, 38);
-            button3.TabIndex = 4;
-            button3.Text = "Back";
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            BackButton.BackColor = Color.FromArgb(192, 0, 0);
+            BackButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BackButton.ForeColor = Color.White;
+            BackButton.Location = new Point(61, 28);
+            BackButton.Margin = new Padding(3, 2, 3, 2);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(175, 38);
+            BackButton.TabIndex = 4;
+            BackButton.Text = "Back";
+            BackButton.UseVisualStyleBackColor = false;
+            BackButton.Click += BackButton_Click;
             // 
             // SearchOptions
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(852, 807);
-            Controls.Add(button3);
+            Controls.Add(BackButton);
             Controls.Add(button2);
             Controls.Add(button1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchOptions";
+            StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
@@ -93,6 +94,6 @@
         private BindingSource bindingSource1;
         private Button button1;
         private Button button2;
-        private Button button3;
+        private Button BackButton;
     }
 }

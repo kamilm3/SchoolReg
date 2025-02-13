@@ -7,7 +7,6 @@ namespace SchoolReg
     {
         private Label label2;
         private Label header;
-        private SqlCommand sqlCommand1;
         private System.Windows.Forms.Button nextButton;
 
 
@@ -23,7 +22,6 @@ namespace SchoolReg
             label1 = new Label();
             studentIDInput = new TextBox();
             header = new Label();
-            sqlCommand1 = new SqlCommand();
             nextButton = new Button();
             PopulateButton = new Button();
             SuspendLayout();
@@ -56,11 +54,6 @@ namespace SchoolReg
             header.BackColor = Color.Brown;
             header.ForeColor = Color.White;
             header.Name = "header";
-            // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
             // nextButton
             // 

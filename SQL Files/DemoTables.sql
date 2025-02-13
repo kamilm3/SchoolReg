@@ -12,21 +12,27 @@ INSERT INTO Instructor (FirstName, LastName, DepartmentID, Email) VALUES
 ('Robert', 'Johnson', 3, 'robertj@university.edu'),
 ('Emily', 'Clark', 4, 'emilyc@university.edu');
 
-
 INSERT INTO Classroom (Location, Capacity) VALUES
 ('Building A, Room 101', 5),
 ('Building B, Room 202', 5),
 ('Building C, Room 303', 5),
 ('Building D, Room 404', 5);
 
+INSERT INTO DayOfWeek (DayID, DayName) VALUES
+(0, 'Sunday'),
+(1, 'Monday'),
+(2, 'Tuesday'),
+(3, 'Wednesday'),
+(4, 'Thursday'),
+(5, 'Friday'),
+(6, 'Saturday');
 
-INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode) VALUES
-(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101'),
-(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200'),
-(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114'),
-(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372'),
-(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101');
-
+INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, TimeOfDay, Duration, DayOfWeek) VALUES
+(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 1000, 90, 1),
+(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200', 1300, 90, 2),
+(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114', 900, 60, 3),
+(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372', 1400, 120, 4),
+(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101', 1530, 90, 1);
 
 INSERT INTO Student (DepartmentID, DOB, Email, FirstName, LastName) VALUES
 (1, '2002-04-15', 'alice@university.edu', 'Alice', 'Brown'),
@@ -93,16 +99,16 @@ INSERT INTO TakenCourses (StudentID, CourseID) VALUES
 (14, 105);
 
 INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES
-(5, 102, GETDATE()),
-(6, 104, GETDATE()),
-(7, 105, GETDATE()),
-(8, 101, GETDATE()),
-(9, 103, GETDATE()), 
-(10, 104, GETDATE()),
-(11, 102, GETDATE()),
-(12, 105, GETDATE()),
-(13, 101, GETDATE()),
-(14, 103, GETDATE());
+(5, 102, GETUTCDATE()),
+(6, 104, GETUTCDATE()),
+(7, 105, GETUTCDATE()),
+(8, 101, GETUTCDATE()),
+(9, 103, GETUTCDATE()), 
+(10, 104, GETUTCDATE()),
+(11, 102, GETUTCDATE()),
+(12, 105, GETUTCDATE()),
+(13, 101, GETUTCDATE()),
+(14, 103, GETUTCDATE());
 
 INSERT INTO Prereq (CourseID, PrereqID) VALUES
 (102, 101),  -- Data Structures requires Introduction to Programming
