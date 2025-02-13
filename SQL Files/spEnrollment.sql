@@ -15,7 +15,7 @@ BEGIN
     -- getting enrollment count and capacity from materialized view
     SELECT 
         @CurrentEnrollment = EnrolledCount,
-        @Capacity = Capacity,
+        @Capacity = Capacity
     FROM vwEnrollCapacity -- THE MAT VIEWWW
     WHERE CourseID = @CourseID AND Year = @Year AND Term = @Term;
 
