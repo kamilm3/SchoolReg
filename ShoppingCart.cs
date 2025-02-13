@@ -69,6 +69,8 @@ namespace SchoolReg
 
             var transaction = DbConnection.Connection.BeginTransaction();
 
+            var succeededCourseCodes = new List<string>();
+
             // Loop through each course in the DataGridView
             foreach (DataGridViewRow row in CartDataGridView.Rows)
             {
@@ -90,13 +92,22 @@ namespace SchoolReg
                 {
                     // Execute the stored procedure for this course
                     cmd.ExecuteNonQuery();
+
+                    succeededCourseCodes.Add(courseCode);
                 }
                 catch (SqlException ex)
                 {
+                    transaction.Rollback();
+
                     // If the stored procedure throws an error (e.g., prerequisite not met, scheduling conflict, or full course),
                     // display the error and exit without processing further courses.
-                    MessageBox.Show($"Error enrolling in {courseCode}: {ex.Message}");
-                    transaction.Rollback();
+                    var rollbackMessage = $"Error enrolling in {courseCode}: {ex.Message}";
+                    if (succeededCourseCodes.Count > 0)
+                    {
+                        rollbackMessage += $"\n\nRolled back enrollment in {string.Join(", ", succeededCourseCodes)}";
+                    }
+
+                    MessageBox.Show(rollbackMessage);
                     return;
                 }
             }

@@ -89,6 +89,9 @@ namespace SchoolReg
         private void addCartButton_Click(object sender, EventArgs e)
         {
 
+            var successCourseCodes = new List<string>();
+            var existingCourseMessages = new List<string>();
+
             foreach (DataGridViewRow row in CoursesTable.SelectedRows)
             {
                 string courseCode = "";
@@ -108,11 +111,13 @@ namespace SchoolReg
                     cmd.Parameters.AddWithValue("@CourseID", courseId);
                     cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
                     cmd.ExecuteNonQuery();
+
+                    successCourseCodes.Add(courseCode);
                 }
                 // exception message contains Violation of UNIQUE KEY constraint
                 catch (SqlException ex) when (ex.Number == 2627)
                 {
-                    MessageBox.Show($"{courseCode} is already in your cart", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    existingCourseMessages.Add($"{courseCode} is already in your cart");
                 }
                 catch (Exception ex)
                 {
@@ -120,6 +125,15 @@ namespace SchoolReg
                 }
             }
 
+            if(existingCourseMessages.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", existingCourseMessages), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (successCourseCodes.Count > 0)
+            {
+                MessageBox.Show($"Added {string.Join(", ", successCourseCodes)} to your cart", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ViewCartButton_Click(object sender, EventArgs e)
