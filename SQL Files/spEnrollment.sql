@@ -2,7 +2,6 @@ CREATE PROCEDURE spEnrollment
 -- parameters
 @StudentID INT,
 @CourseID VARCHAR(10),
-@SectionID INT,
 @Year INT,
 @Term VARCHAR(10)
 AS
@@ -17,25 +16,23 @@ BEGIN
     SELECT 
         @CurrentEnrollment = EnrolledCount,
         @Capacity = Capacity,
-        @CourseID = CourseID
-    FROM vwEnrollCapacity
-    WHERE CourseID = @CourseID AND SectionID = @SectionID;
+    FROM vwEnrollCapacity -- THE MAT VIEWWW
+    WHERE CourseID = @CourseID AND Year = @Year AND Term = @Term;
 
     -- if section full
     IF @CurrentEnrollment >= @Capacity
     BEGIN
         ROLLBACK TRANSACTION;
-        THROW 50001, 'This section is full. Please select another section.', 1;
+        THROW 100000, 'Course is full.', 1;
     END
 
     -- capacity not full = finalizing enrolment
-    UPDATE Section
-    SET EnrolledCount = EnrolledCount + 1
-    WHERE SectionID = @SectionID;
+    INSERT INTO Enroll (StudentID, CourseID)
+    VALUES (@StudentID, @CourseID);
 
     -- deleting course from shopping cart since student just enrolled in it
     DELETE FROM ShoppingCart
-    WHERE StudentID = @StudentID AND CourseID = @CourseID AND SectionID = @SectionID;
+    WHERE StudentID = @StudentID AND CourseID = @CourseID;
     COMMIT TRANSACTION;
 
     RETURN;
