@@ -27,12 +27,60 @@ INSERT INTO DayOfWeek (DayID, DayName) VALUES
 (5, 'Friday'),
 (6, 'Saturday');
 
-INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, StartTimeMins, DurationMins, DayOfWeek) VALUES
-(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 1000, 90, 1),
-(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200', 1300, 90, 2),
-(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114', 900, 60, 3),
-(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372', 1400, 120, 4),
-(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101', 1530, 90, 1);
+-- Insert sample courses (no scheduling info here)
+INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode)
+VALUES
+  (101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101'), -- CMPT101 conflicts with MATH114
+  (102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200'),
+  (103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114'), 
+  (104, 2, 2, 4, 3, 'Linear Algebra', 2025, 'Winter', 'MATH200'),
+  (105, 3, 3, 1, 4, 'Quantum Mechanics', 2026, 'Fall', 'PHYS372'),
+  (106, 3, 3, 2, 3, 'General Relativity', 2026, 'Winter', 'PHYS400'),
+  (107, 4, 4, 3, 3, 'Principles of Management', 2026, 'Fall', 'MGMT101'),
+  (108, 4, 4, 4, 4, 'Marketing', 2026, 'Winter', 'MGMT201');
+
+-- Insert CourseTimes for Tuesday & Thursday courses (90-minute sessions)
+-- (Tuesday = DayID 2; Thursday = DayID 4)
+INSERT INTO CourseTimes (CourseID, DayID, StartTimeMins, DurationMins)
+VALUES
+  -- Course 101: 9AM-10:30AM 540=60*9=9AM
+  (101, 2, 540, 90),
+  (101, 4, 540, 90),
+
+  -- Course 103: 8AM-9:30AM 480=60*8=8AM
+  (103, 2, 480, 90),
+  (103, 4, 480, 90),
+
+  -- Course 105: 11AM-12:30PM 660=60*11=11AM
+  (105, 2, 660, 90),
+  (105, 4, 660, 90),
+
+  -- Course 107: 2PM-3:30PM 840=60*14=2PM
+  (107, 2, 840, 90),
+  (107, 4, 840, 90),
+
+  -- Insert CourseTimes for Monday/Wednesday/Friday courses (60-minute sessions)
+  -- (Monday = DayID 1; Wednesday = DayID 3; Friday = DayID 5)
+  -- Course 102: 10AM-11PM
+  (102, 1, 600, 60),
+  (102, 3, 600, 60),
+  (102, 5, 600, 60),
+
+  -- Course 104: 9AM-10AM 540=60*9=9AM
+  (104, 1, 540, 60),
+  (104, 3, 540, 60),
+  (104, 5, 540, 60),
+
+  -- Course 106: 8AM-9AM 480=60*8=8AM
+  (106, 1, 480, 60),
+  (106, 3, 480, 60),
+  (106, 5, 480, 60),
+
+  -- Course 108: 5PM-6PM 1020=60*17=5PM
+  (108, 1, 1020, 60),
+  (108, 3, 1020, 60),
+  (108, 5, 1020, 60);
+
 
 INSERT INTO Student (DepartmentID, DOB, Email, FirstName, LastName) VALUES
 (1, '2002-04-15', 'alice@university.edu', 'Alice', 'Brown'),
@@ -61,7 +109,6 @@ INSERT INTO Student (DepartmentID, DOB, Email, FirstName, LastName) VALUES
 (4, '2002-04-29', 'lily@university.edu', 'Lily', 'Harris');
 
 INSERT INTO Enroll (StudentID, CourseID) VALUES
-(1, 101),
 (1, 102),
 (2, 103),
 (3, 104),

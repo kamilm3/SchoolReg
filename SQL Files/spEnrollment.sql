@@ -12,6 +12,16 @@ AS
 BEGIN
     BEGIN TRANSACTION;
 
+    -- checking if already enrolled
+    IF EXISTS (
+        SELECT 1 FROM Enroll
+        WHERE StudentID = @StudentID AND CourseID = @CourseID
+    )
+    BEGIN
+        ROLLBACK TRANSACTION;
+        THROW 100003, 'Already enrolled in this course.', 1;
+    END
+
     -- checking prerequisites
     IF EXISTS (
         SELECT 1
@@ -26,29 +36,29 @@ BEGIN
     )
     BEGIN
         ROLLBACK TRANSACTION;
-        THROW 100001, 'Student has not fulfilled all prerequisites.', 1;
+        THROW 100001, 'All prerequisites not fulfilled.', 1;
     END
 
     -- checking scheduling conflicts
-    DECLARE @NewCourseStart INT;
-    DECLARE @NewCourseDuration INT;
-    DECLARE @NewCourseDay INT;
-
-    SELECT @NewCourseStart = StartTimeMins,
-           @NewCourseDuration = DurationMins,
-           @NewCourseDay = DayOfWeek
-    FROM Courses
-    WHERE CourseID = @CourseID AND Year = @Year AND Term = @Term;
-
     IF EXISTS (
-         SELECT 1
-         FROM Enroll e
-         JOIN Courses c ON e.CourseID = c.CourseID
-         WHERE e.StudentID = @StudentID
-           AND c.Year = @Year AND c.Term = @Term
-           AND c.DayOfWeek = @NewCourseDay
-           AND @NewCourseStart < (c.StartTimeMins + c.DurationMins)
-           AND (@NewCourseStart + @NewCourseDuration) > c.StartTimeMins
+        SELECT 1
+        FROM CourseTimes newCT
+        WHERE newCT.CourseID = @CourseID
+          AND EXISTS (
+              SELECT 1
+              FROM CourseTimes oldCT
+              WHERE oldCT.CourseID IN (
+                    SELECT c.CourseID
+                    FROM Enroll e
+                    JOIN Courses c ON e.CourseID = c.CourseID
+                    WHERE e.StudentID = @StudentID
+                      AND c.Year = @Year
+                      AND c.Term = @Term
+              )
+              AND oldCT.DayID = newCT.DayID
+              AND newCT.StartTimeMins < (oldCT.StartTimeMins + oldCT.DurationMins)
+              AND (newCT.StartTimeMins + newCT.DurationMins) > oldCT.StartTimeMins
+          )
     )
     BEGIN
          ROLLBACK TRANSACTION;

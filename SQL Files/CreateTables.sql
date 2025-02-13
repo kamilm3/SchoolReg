@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS TakenCourses;
 DROP TABLE IF EXISTS ShoppingCart;
 DROP TABLE IF EXISTS Prereq;
+DROP TABLE IF EXISTS CourseTimes;
 DROP TABLE IF EXISTS DayOfWeek;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Student;
@@ -45,10 +46,17 @@ CREATE TABLE Courses (
     CourseName VARCHAR(255),
     Year INT NOT NULL,
     Term VARCHAR(10) NOT NULL,
-    CourseCode VARCHAR(10) NOT NULL,
-    StartTimeMins INT CHECK (StartTimeMins >= 0 AND StartTimeMins <= 1440),
+    CourseCode VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE CourseTimes (
+    CourseTimeID INT PRIMARY KEY IDENTITY(1,1),
+    CourseID INT NOT NULL,
+    DayID INT NOT NULL,
+    StartTimeMins INT CHECK (StartTimeMins >= 0 AND StartTimeMins < 1440),
     DurationMins INT CHECK (DurationMins > 0 AND DurationMins <= 480),
-    DayOfWeek INT CHECK (DayOfWeek >= 0 AND DayOfWeek <= 6)
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (DayID) REFERENCES DayOfWeek(DayID)
 );
 
 CREATE TABLE Student (
@@ -80,7 +88,8 @@ CREATE TABLE ShoppingCart (
     CartID INT PRIMARY KEY IDENTITY(1,1),
     StudentID INT FOREIGN KEY REFERENCES Student(StudentID),
     CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
-    Time DATETIME
+    Time DATETIME,
+    CONSTRAINT UniqueShoppingCartStudentIDCourseID UNIQUE (StudentID, CourseID)
 );
 
 CREATE TABLE Prereq (

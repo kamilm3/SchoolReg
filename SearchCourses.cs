@@ -88,22 +88,38 @@ namespace SchoolReg
 
         private void addCartButton_Click(object sender, EventArgs e)
         {
+
             foreach (DataGridViewRow row in CoursesTable.SelectedRows)
             {
-                //var dataRow = (DataRowView)CoursesTable.CurrentRow.DataBoundItem;
-                //int courseId = (int)dataRow.Row.ItemArray[0]!;
+                string courseCode = "";
+                try
+                {
+                    //var dataRow = (DataRowView)CoursesTable.CurrentRow.DataBoundItem;
+                    //int courseId = (int)dataRow.Row.ItemArray[0]!;
 
-                // Retrieve course details from the row
-                var courseId = (int)row.Cells["CourseID"].Value;
+                    // Retrieve course details from the row
+                    var courseId = (int)row.Cells["CourseID"].Value;
+                    courseCode = (string)row.Cells["CourseCode"].Value;
 
-                var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
+                    var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
 
-                using var cmd = new SqlCommand(query, DbConnection.Connection);
-                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
-                cmd.Parameters.AddWithValue("@CourseID", courseId);
-                cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
-                cmd.ExecuteNonQuery();
+                    using var cmd = new SqlCommand(query, DbConnection.Connection);
+                    cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+                    cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
+                    cmd.ExecuteNonQuery();
+                }
+                // exception message contains Violation of UNIQUE KEY constraint
+                catch (SqlException ex) when (ex.Number == 2627)
+                {
+                    MessageBox.Show($"{courseCode} is already in your cart", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
         }
 
         private void ViewCartButton_Click(object sender, EventArgs e)

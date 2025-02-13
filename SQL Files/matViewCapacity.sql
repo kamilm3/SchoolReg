@@ -9,14 +9,14 @@ SELECT
     c.Year,
     c.Term,
     cl.Capacity,
-    COUNT_BIG(e.StudentID) AS EnrolledCount
+    COUNT_BIG(*) AS EnrolledCount
 FROM dbo.Courses c
 JOIN dbo.Classroom cl ON c.ClassroomID = cl.ClassroomID
-LEFT JOIN dbo.Enroll e ON c.CourseID = e.CourseID
+JOIN dbo.Enroll e ON c.CourseID = e.CourseID
 GROUP BY c.CourseID, c.Year, c.Term, cl.Capacity;
 GO
 
--- unique clustered index
+-- Create the unique clustered index
 CREATE UNIQUE CLUSTERED INDEX IDX_vwEnrollCapacity_CourseID
 ON vwEnrollCapacity (CourseID, Year, Term);
 GO

@@ -67,6 +67,8 @@ namespace SchoolReg
                 return;
             }
 
+            var transaction = DbConnection.Connection.BeginTransaction();
+
             // Loop through each course in the DataGridView
             foreach (DataGridViewRow row in CartDataGridView.Rows)
             {
@@ -77,7 +79,7 @@ namespace SchoolReg
                 var year = (int)row.Cells["Year"].Value;
                 var term = (string)row.Cells["Term"].Value;
 
-                using var cmd = new SqlCommand("spEnrollment", DbConnection.Connection);
+                using var cmd = new SqlCommand("spEnrollment", DbConnection.Connection, transaction);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
                 cmd.Parameters.AddWithValue("@CourseID", courseID);
@@ -94,9 +96,12 @@ namespace SchoolReg
                     // If the stored procedure throws an error (e.g., prerequisite not met, scheduling conflict, or full course),
                     // display the error and exit without processing further courses.
                     MessageBox.Show($"Error enrolling in {courseCode}: {ex.Message}");
+                    transaction.Rollback();
                     return;
                 }
             }
+
+            transaction.Commit();
 
             // If all stored procedure calls succeeded, notify the user
             MessageBox.Show("Courses successfully enrolled");
