@@ -44,20 +44,31 @@ BEGIN
         SELECT 1
         FROM CourseTimes newCT
         WHERE newCT.CourseID = @CourseID
+        -- ^^ select the times of the current course
+
           AND EXISTS (
+              -- vv get all the course times, but only consider some to actually check for conflicts
               SELECT 1
               FROM CourseTimes oldCT
               WHERE oldCT.CourseID IN (
+
+                    -- 1) only consider the courses that the student is enrolled in
                     SELECT c.CourseID
                     FROM Enroll e
+                    -- join to get the Year & Term of the courses student is enrolled in
                     JOIN Courses c ON e.CourseID = c.CourseID
                     WHERE e.StudentID = @StudentID
+                    -- 2) also only consider them if they're in the same year and term
                       AND c.Year = @Year
                       AND c.Term = @Term
+              
               )
+
+              -- 3) also only consider them if they're on the same day
               AND oldCT.DayID = newCT.DayID
               AND newCT.StartTimeMins < (oldCT.StartTimeMins + oldCT.DurationMins)
               AND (newCT.StartTimeMins + newCT.DurationMins) > oldCT.StartTimeMins
+              -- ^^ end of the search
           )
     )
     BEGIN
