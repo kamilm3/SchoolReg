@@ -16,7 +16,7 @@ BEGIN
     SELECT 
         @CurrentEnrollment = EnrolledCount,
         @Capacity = Capacity
-    FROM vwEnrollCapacity -- THE MAT VIEWWW
+    FROM vwEnrollCapacity -- THE MAT VIEW
     WHERE CourseID = @CourseID AND Year = @Year AND Term = @Term;
 
     -- if section full
