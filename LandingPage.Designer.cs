@@ -88,7 +88,7 @@ namespace SchoolReg
             testLabel.Text = "label1";
             testLabel.Visible = false;
             // 
-            // Form2
+            // LandingPage
             // 
             AccessibleRole = AccessibleRole.Separator;
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -99,7 +99,8 @@ namespace SchoolReg
             Controls.Add(cartButton);
             Controls.Add(searchButton);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "Form2";
+            Name = "LandingPage";
+            StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
             PerformLayout();
         }

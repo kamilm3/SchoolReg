@@ -32,10 +32,10 @@
             label1 = new Label();
             BackButton = new Button();
             bindingSource1 = new BindingSource(components);
-            dropDownTerm = new ComboBox();
             CartDataGridView = new DataGridView();
             NoResultLabel = new Label();
             EnrollButton = new Button();
+            RemoveSelectedButton = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CartDataGridView).BeginInit();
             SuspendLayout();
@@ -65,28 +65,16 @@
             BackButton.UseVisualStyleBackColor = false;
             BackButton.Click += BackButton_Click;
             // 
-            // dropDownTerm
-            // 
-            dropDownTerm.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dropDownTerm.ForeColor = SystemColors.ScrollBar;
-            dropDownTerm.FormattingEnabled = true;
-            dropDownTerm.Items.AddRange(new object[] { "Fall 2025", "Winter 2026" });
-            dropDownTerm.Location = new Point(61, 110);
-            dropDownTerm.Margin = new Padding(3, 2, 3, 2);
-            dropDownTerm.Name = "dropDownTerm";
-            dropDownTerm.Size = new Size(809, 33);
-            dropDownTerm.TabIndex = 6;
-            dropDownTerm.Text = "Choose term";
-            // 
             // CartDataGridView
             // 
             CartDataGridView.AllowUserToAddRows = false;
             CartDataGridView.AllowUserToDeleteRows = false;
             CartDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             CartDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CartDataGridView.Location = new Point(61, 182);
+            CartDataGridView.Location = new Point(61, 149);
             CartDataGridView.Margin = new Padding(3, 2, 3, 2);
             CartDataGridView.Name = "CartDataGridView";
+            CartDataGridView.ReadOnly = true;
             CartDataGridView.RowHeadersWidth = 51;
             CartDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             CartDataGridView.Size = new Size(813, 486);
@@ -96,7 +84,7 @@
             // 
             NoResultLabel.AutoSize = true;
             NoResultLabel.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NoResultLabel.Location = new Point(61, 150);
+            NoResultLabel.Location = new Point(61, 117);
             NoResultLabel.Name = "NoResultLabel";
             NoResultLabel.Size = new Size(145, 25);
             NoResultLabel.TabIndex = 9;
@@ -108,7 +96,7 @@
             EnrollButton.BackColor = Color.Gray;
             EnrollButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EnrollButton.ForeColor = Color.White;
-            EnrollButton.Location = new Point(61, 681);
+            EnrollButton.Location = new Point(61, 648);
             EnrollButton.Margin = new Padding(3, 2, 3, 2);
             EnrollButton.Name = "EnrollButton";
             EnrollButton.Size = new Size(153, 35);
@@ -118,15 +106,30 @@
             EnrollButton.Visible = false;
             EnrollButton.Click += EnrollButton_Click;
             // 
+            // RemoveSelectedButton
+            // 
+            RemoveSelectedButton.BackColor = Color.Gray;
+            RemoveSelectedButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RemoveSelectedButton.ForeColor = Color.White;
+            RemoveSelectedButton.Location = new Point(721, 648);
+            RemoveSelectedButton.Margin = new Padding(3, 2, 3, 2);
+            RemoveSelectedButton.Name = "RemoveSelectedButton";
+            RemoveSelectedButton.Size = new Size(153, 35);
+            RemoveSelectedButton.TabIndex = 11;
+            RemoveSelectedButton.Text = "Remove Selected";
+            RemoveSelectedButton.UseVisualStyleBackColor = false;
+            RemoveSelectedButton.Visible = false;
+            RemoveSelectedButton.Click += RemoveSelectedButton_Click;
+            // 
             // ShoppingCart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1173, 732);
+            Controls.Add(RemoveSelectedButton);
             Controls.Add(EnrollButton);
             Controls.Add(NoResultLabel);
             Controls.Add(CartDataGridView);
-            Controls.Add(dropDownTerm);
             Controls.Add(BackButton);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
@@ -144,9 +147,9 @@
         private Label label1;
         private Button BackButton;
         private BindingSource bindingSource1;
-        private ComboBox dropDownTerm;
         private DataGridView CartDataGridView;
         private Label NoResultLabel;
         private Button EnrollButton;
+        private Button RemoveSelectedButton;
     }
 }

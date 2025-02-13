@@ -1,9 +1,11 @@
 USE SchoolReg
 
+DROP VIEW IF EXISTS vwEnrollCapacity;
 DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS TakenCourses;
 DROP TABLE IF EXISTS ShoppingCart;
 DROP TABLE IF EXISTS Prereq;
+DROP TABLE IF EXISTS DayOfWeek;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Student;
 DROP TABLE IF EXISTS Instructor;
@@ -29,6 +31,11 @@ CREATE TABLE Classroom (
     Capacity INT
 );
 
+CREATE TABLE DayOfWeek (
+    DayID INT PRIMARY KEY,
+    DayName VARCHAR(10)
+);
+
 CREATE TABLE Courses (
     CourseID INT PRIMARY KEY,
     DepartmentID INT FOREIGN KEY REFERENCES Department(DepartmentID),
@@ -42,11 +49,6 @@ CREATE TABLE Courses (
     StartTimeMins INT CHECK (StartTimeMins >= 0 AND StartTimeMins <= 1440),
     DurationMins INT CHECK (DurationMins > 0 AND DurationMins <= 480),
     DayOfWeek INT CHECK (DayOfWeek >= 0 AND DayOfWeek <= 6)
-);
-
-CREATE TABLE DayOfWeek (
-    DayID INT PRIMARY KEY,
-    DayName VARCHAR(10)
 );
 
 CREATE TABLE Student (

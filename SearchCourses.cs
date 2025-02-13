@@ -67,12 +67,18 @@ namespace SchoolReg
                 {
                     NoResultLabel.Text = "There are no results for " + courseName;
                     NoResultLabel.Visible = true;
+
+                    CoursesTable.Visible = false;
+                    addCartButton.Visible = false;
+                    ViewCartButton.Visible = false;
                 }
                 else
                 {
-                    CoursesTable.Visible = true;
                     NoResultLabel.Visible = false;
+
+                    CoursesTable.Visible = true;
                     addCartButton.Visible = true;
+                    ViewCartButton.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -82,20 +88,18 @@ namespace SchoolReg
 
         private void addCartButton_Click(object sender, EventArgs e)
         {
-            if (Session.CurrentSession == null)
-            {
-                MessageBox.Show("Please login to add courses to your cart");
-                return;
-            }
-
             foreach (DataGridViewRow row in CoursesTable.SelectedRows)
             {
-                int courseId = Convert.ToInt32(row.Cells["CourseID"].Value);
+                //var dataRow = (DataRowView)CoursesTable.CurrentRow.DataBoundItem;
+                //int courseId = (int)dataRow.Row.ItemArray[0]!;
+
+                // Retrieve course details from the row
+                var courseId = (int)row.Cells["CourseID"].Value;
 
                 var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
 
                 using var cmd = new SqlCommand(query, DbConnection.Connection);
-                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession.StudentID);
+                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
                 cmd.Parameters.AddWithValue("@CourseID", courseId);
                 cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
                 cmd.ExecuteNonQuery();

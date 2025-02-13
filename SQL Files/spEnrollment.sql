@@ -1,7 +1,11 @@
+IF OBJECT_ID('spEnrollment', 'P') IS NOT NULL
+    DROP PROCEDURE spEnrollment;
+GO
+
 CREATE PROCEDURE spEnrollment
 -- parameters
 @StudentID INT,
-@CourseID VARCHAR(10),
+@CourseID INT,
 @Year INT,
 @Term VARCHAR(10)
 AS

@@ -15,15 +15,14 @@ namespace SchoolReg
         {
             InitializeComponent();
 
-            if (Session.CurrentSession == null)
-            {
-                MessageBox.Show("Please login to add courses to your cart");
-                return;
-            }
+            LoadCart();
+        }
 
+        private void LoadCart()
+        {
             var query = "SELECT ShoppingCart.CourseID, CourseCode, CourseName, Year, Term FROM ShoppingCart JOIN Courses ON ShoppingCart.CourseID = Courses.CourseID WHERE StudentID = @StudentID";
-            using var cmd = new SqlCommand(query, DbConnection.Connection);
-            cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession.StudentID);
+            var cmd = new SqlCommand(query, DbConnection.Connection);
+            cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
             cmd.ExecuteNonQuery();
 
             var adapter = new SqlDataAdapter(cmd);
@@ -39,12 +38,18 @@ namespace SchoolReg
             {
                 NoResultLabel.Text = "There are no courses in your shopping cart";
                 NoResultLabel.Visible = true;
+
+                CartDataGridView.Visible = false;
+                EnrollButton.Visible = false;
+                RemoveSelectedButton.Visible = false;
             }
             else
             {
-                CartDataGridView.Visible = true;
                 NoResultLabel.Visible = false;
+
+                CartDataGridView.Visible = true;
                 EnrollButton.Visible = true;
+                RemoveSelectedButton.Visible = true;
             }
         }
 
@@ -55,48 +60,72 @@ namespace SchoolReg
 
         private void EnrollButton_Click(object sender, EventArgs e)
         {
-            /* MATERIALIZED VIEW WE HAVE IN SCHEMA
-            DROP VIEW IF EXISTS vwEnrollCapacity;
-            GO
+            // Ensure there are courses in the cart
+            if (CartDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("There are no courses in your cart to enroll in");
+                return;
+            }
 
-            CREATE VIEW vwEnrollCapacity
-WITH SCHEMABINDING
-AS
-SELECT
-    c.CourseID,
-    c.Year,
-    c.Term,
-    cr.Capacity,
-	COUNT_BIG(*) AS TotalRecords,
-    COUNT_BIG(e.StudentID) AS EnrolledCount,
-    COUNT_BIG(tc.CourseID) AS PrereqCoursesCompleted
-FROM dbo.Courses c
-JOIN dbo.Classroom cr ON c.ClassroomID = cr.ClassroomID-- capacity from Classroom table
-JOIN dbo.Enroll e ON c.CourseID = e.CourseID-- countig enrolled students
-JOIN dbo.TakenCourses tc ON e.StudentID = tc.StudentID-- counting prerequisites completed
-GROUP BY c.CourseID, c.Year, c.Term, cr.Capacity;
-            GO
+            // Loop through each course in the DataGridView
+            foreach (DataGridViewRow row in CartDataGridView.Rows)
+            {
+                // Retrieve course details from the row
+                var courseID = (int)row.Cells["CourseID"].Value;
+                var courseCode = (string)row.Cells["CourseCode"].Value;
+                var courseName = (string)row.Cells["CourseName"].Value;
+                var year = (int)row.Cells["Year"].Value;
+                var term = (string)row.Cells["Term"].Value;
 
-            -- unique clustered index
-            CREATE UNIQUE CLUSTERED INDEX IDX_vwEnrollCapacity_CourseID
-ON vwEnrollCapacity(CourseID, Year, Term);
-            GO
-                */
+                using var cmd = new SqlCommand("spEnrollment", DbConnection.Connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                cmd.Parameters.AddWithValue("@CourseID", courseID);
+                cmd.Parameters.AddWithValue("@Year", year);
+                cmd.Parameters.AddWithValue("@Term", term);
 
+                try
+                {
+                    // Execute the stored procedure for this course
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    // If the stored procedure throws an error (e.g., prerequisite not met, scheduling conflict, or full course),
+                    // display the error and exit without processing further courses.
+                    MessageBox.Show($"Error enrolling in {courseCode}: {ex.Message}");
+                    return;
+                }
+            }
 
-            //verify all first by using the materialized view
-
-            // VERIFY 
-
-            // IF ANY COURSES NOT ALLOWED BASED ON MATERIALIZED VIEW, SHOW MESSAGE BOX WITH THE SPECIFIC ERROR AND RETURN
-
-
-            //enroll all after all have been verified
-
-            //... CODE TO ENROLL IN ALL
-
+            // If all stored procedure calls succeeded, notify the user
             MessageBox.Show("Courses successfully enrolled");
             this.Close();
+        }
+
+        private void RemoveSelectedButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Loop through each course in the DataGridView
+                foreach (DataGridViewRow row in CartDataGridView.SelectedRows)
+                {
+                    // Retrieve course details from the row
+                    var courseID = (int)row.Cells["CourseID"].Value;
+
+                    var query = "DELETE FROM ShoppingCart WHERE StudentID = @StudentID AND CourseID = @CourseID";
+                    using var cmd = new SqlCommand(query, DbConnection.Connection);
+                    cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    cmd.Parameters.AddWithValue("@CourseID", courseID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            LoadCart();
         }
     }
 }

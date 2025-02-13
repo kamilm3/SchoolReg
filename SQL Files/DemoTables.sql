@@ -27,7 +27,7 @@ INSERT INTO DayOfWeek (DayID, DayName) VALUES
 (5, 'Friday'),
 (6, 'Saturday');
 
-INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, TimeOfDay, Duration, DayOfWeek) VALUES
+INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, StartTimeMins, DurationMins, DayOfWeek) VALUES
 (101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 1000, 90, 1),
 (102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200', 1300, 90, 2),
 (103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114', 900, 60, 3),
