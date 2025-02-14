@@ -42,7 +42,7 @@ namespace SchoolReg
             searchButton.BackColor = Color.FromArgb(192, 0, 0);
             searchButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchButton.ForeColor = Color.White;
-            searchButton.Location = new Point(313, 216);
+            searchButton.Location = new Point(180, 221);
             searchButton.Margin = new Padding(3, 2, 3, 2);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(525, 45);
@@ -56,7 +56,7 @@ namespace SchoolReg
             cartButton.BackColor = Color.FromArgb(192, 0, 0);
             cartButton.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cartButton.ForeColor = Color.White;
-            cartButton.Location = new Point(313, 289);
+            cartButton.Location = new Point(180, 294);
             cartButton.Margin = new Padding(3, 2, 3, 2);
             cartButton.Name = "cartButton";
             cartButton.Size = new Size(525, 45);
@@ -72,7 +72,7 @@ namespace SchoolReg
             header.ForeColor = Color.White;
             header.Location = new Point(0, -1);
             header.Name = "header";
-            header.Size = new Size(1149, 63);
+            header.Size = new Size(854, 63);
             header.TabIndex = 5;
             header.Text = "Course Registration";
             header.TextAlign = ContentAlignment.MiddleCenter;
@@ -93,7 +93,7 @@ namespace SchoolReg
             AccessibleRole = AccessibleRole.Separator;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1148, 807);
+            ClientSize = new Size(852, 807);
             Controls.Add(testLabel);
             Controls.Add(header);
             Controls.Add(cartButton);
@@ -101,6 +101,7 @@ namespace SchoolReg
             Margin = new Padding(3, 2, 3, 2);
             Name = "LandingPage";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += LandingPage_Load;
             ResumeLayout(false);
             PerformLayout();
         }

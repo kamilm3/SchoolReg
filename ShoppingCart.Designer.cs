@@ -77,7 +77,7 @@
             CartDataGridView.ReadOnly = true;
             CartDataGridView.RowHeadersWidth = 51;
             CartDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CartDataGridView.Size = new Size(813, 486);
+            CartDataGridView.Size = new Size(678, 270);
             CartDataGridView.TabIndex = 7;
             // 
             // NoResultLabel
@@ -96,7 +96,7 @@
             EnrollButton.BackColor = Color.Gray;
             EnrollButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             EnrollButton.ForeColor = Color.White;
-            EnrollButton.Location = new Point(61, 648);
+            EnrollButton.Location = new Point(61, 443);
             EnrollButton.Margin = new Padding(3, 2, 3, 2);
             EnrollButton.Name = "EnrollButton";
             EnrollButton.Size = new Size(153, 35);
@@ -111,7 +111,7 @@
             RemoveSelectedButton.BackColor = Color.Gray;
             RemoveSelectedButton.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             RemoveSelectedButton.ForeColor = Color.White;
-            RemoveSelectedButton.Location = new Point(721, 648);
+            RemoveSelectedButton.Location = new Point(586, 443);
             RemoveSelectedButton.Margin = new Padding(3, 2, 3, 2);
             RemoveSelectedButton.Name = "RemoveSelectedButton";
             RemoveSelectedButton.Size = new Size(153, 35);
@@ -125,7 +125,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1173, 732);
+            ClientSize = new Size(852, 807);
             Controls.Add(RemoveSelectedButton);
             Controls.Add(EnrollButton);
             Controls.Add(NoResultLabel);

@@ -14,19 +14,20 @@ namespace SchoolReg
 
         static DbConnection()
         {
-            //Connection = new SqlConnection("user id=admin3;" + // Username
-            //                     "password=admin;" + // Password
-            //                      "server=LAPTOP-6TEGHEN2;" + // Server name
-            //                      "TrustServerCertificate=True;" +
-            //                      "database=SchoolReg; " + // Database
-            //                      "connection timeout=30"); // Timeout in seconds
-            
+            Connection = new SqlConnection("user id=admin3;" + // Username
+                                 "password=admin;" + // Password
+                                  "server=LAPTOP-6TEGHEN2;" + // Server name
+                                  "TrustServerCertificate=True;" +
+                                  "database=SchoolReg; " + // Database
+                                 "connection timeout=30"); // Timeout in seconds
+            /*
             Connection = new SqlConnection("user id=admin;" + // Username
                       "password=password123;" + // Password
                       "server=BUBBLES\\BUBBLES;" + // Server name
                       "TrustServerCertificate=True;" +
                       "database=SchoolReg; " + // Database
                       "connection timeout=3"); // Timeout in seconds
+            */
            
 
 

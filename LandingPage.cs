@@ -33,5 +33,10 @@ namespace SchoolReg
             classSearchPage.ShowDialog();
             this.Show();
         }
+
+        private void LandingPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

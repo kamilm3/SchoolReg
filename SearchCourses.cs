@@ -125,7 +125,7 @@ namespace SchoolReg
                 }
             }
 
-            if(existingCourseMessages.Count > 0)
+            if (existingCourseMessages.Count > 0)
             {
                 MessageBox.Show(string.Join("\n", existingCourseMessages), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -142,6 +142,10 @@ namespace SchoolReg
             this.Hide();
             cartPage.ShowDialog();
             this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

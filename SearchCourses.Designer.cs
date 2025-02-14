@@ -36,6 +36,7 @@
             NoResultLabel = new Label();
             addCartButton = new Button();
             ViewCartButton = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)CoursesTable).BeginInit();
             SuspendLayout();
             // 
@@ -86,7 +87,7 @@
             CoursesTable.ReadOnly = true;
             CoursesTable.RowHeadersWidth = 51;
             CoursesTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CoursesTable.Size = new Size(678, 238);
+            CoursesTable.Size = new Size(678, 270);
             CoursesTable.TabIndex = 6;
             CoursesTable.Visible = false;
             // 
@@ -145,11 +146,23 @@
             ViewCartButton.Visible = false;
             ViewCartButton.Click += ViewCartButton_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(704, 28);
+            button1.Name = "button1";
+            button1.Size = new Size(107, 38);
+            button1.TabIndex = 11;
+            button1.Text = "Exit";
+            button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
+            button1.Click += button1_Click;
+            // 
             // SearchCourses
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(912, 530);
+            ClientSize = new Size(852, 807);
+            Controls.Add(button1);
             Controls.Add(ViewCartButton);
             Controls.Add(addCartButton);
             Controls.Add(NoResultLabel);
@@ -176,5 +189,6 @@
         private Label NoResultLabel;
         private Button addCartButton;
         private Button ViewCartButton;
+        private Button button1;
     }
 }
