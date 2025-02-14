@@ -88,33 +88,48 @@ namespace SchoolReg
 
         private void addCartButton_Click(object sender, EventArgs e)
         {
-
             var successCourseCodes = new List<string>();
             var existingCourseMessages = new List<string>();
+            var conflictMessages = new List<string>();
 
             foreach (DataGridViewRow row in CoursesTable.SelectedRows)
             {
                 string courseCode = "";
                 try
                 {
-                    //var dataRow = (DataRowView)CoursesTable.CurrentRow.DataBoundItem;
-                    //int courseId = (int)dataRow.Row.ItemArray[0]!;
-
-                    // Retrieve course details from the row
                     var courseId = (int)row.Cells["CourseID"].Value;
                     courseCode = (string)row.Cells["CourseCode"].Value;
+                    var year = Year;
+                    var term = Term;
 
-                    var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
-
-                    using var cmd = new SqlCommand(query, DbConnection.Connection);
+                    using var cmd = new SqlCommand("spCheckEnrollment", DbConnection.Connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
                     cmd.Parameters.AddWithValue("@CourseID", courseId);
-                    cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@Year", year);
+                    cmd.Parameters.AddWithValue("@Term", term);
+
+                    try
+                    {
+                        // Execute stored procedure to check prereqs and conflicts only
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        conflictMessages.Add($"Cannot add {courseCode}: {ex.Message}");
+                        continue;
+                    }
+
+                    // Only add to ShoppingCart if it passes checks
+                    var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
+                    using var cartCmd = new SqlCommand(query, DbConnection.Connection);
+                    cartCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    cartCmd.Parameters.AddWithValue("@CourseID", courseId);
+                    cartCmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
+                    cartCmd.ExecuteNonQuery();
 
                     successCourseCodes.Add(courseCode);
                 }
-                // exception message contains Violation of UNIQUE KEY constraint
                 catch (SqlException ex) when (ex.Number == 2627)
                 {
                     existingCourseMessages.Add($"{courseCode} is already in your cart");
@@ -125,16 +140,22 @@ namespace SchoolReg
                 }
             }
 
+            if (conflictMessages.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", conflictMessages), "Conflict Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             if (existingCourseMessages.Count > 0)
             {
                 MessageBox.Show(string.Join("\n", existingCourseMessages), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             if (successCourseCodes.Count > 0)
             {
                 MessageBox.Show($"Added {string.Join(", ", successCourseCodes)} to your cart", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
+
 
         private void ViewCartButton_Click(object sender, EventArgs e)
         {
