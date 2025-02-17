@@ -6,6 +6,8 @@ select p.CourseID,
     count_big(*) as PrereqsCompleted
 from dbo.Prereq p
 join dbo.TakenCourses tc on p.PrereqID = tc.CourseID
+join dbo.Student s on tc.StudentID = s.StudentID
+    where s.Status = 'Active'
 GROUP BY p.CourseID, tc.StudentID;
 go
 
