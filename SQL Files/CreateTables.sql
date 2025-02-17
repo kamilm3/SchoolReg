@@ -1,12 +1,9 @@
 USE SchoolReg
 
-DROP VIEW IF EXISTS vwEnrollCapacity;
 DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS TakenCourses;
 DROP TABLE IF EXISTS ShoppingCart;
 DROP TABLE IF EXISTS Prereq;
-DROP TABLE IF EXISTS CourseTimes;
-DROP TABLE IF EXISTS DayOfWeek;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Student;
 DROP TABLE IF EXISTS Instructor;
@@ -32,11 +29,6 @@ CREATE TABLE Classroom (
     Capacity INT
 );
 
-CREATE TABLE DayOfWeek (
-    DayID INT PRIMARY KEY,
-    DayName VARCHAR(10)
-);
-
 CREATE TABLE Courses (
     CourseID INT PRIMARY KEY,
     DepartmentID INT FOREIGN KEY REFERENCES Department(DepartmentID),
@@ -44,19 +36,9 @@ CREATE TABLE Courses (
     ClassroomID INT FOREIGN KEY REFERENCES Classroom(ClassroomID),
     Credits INT,
     CourseName VARCHAR(255),
-    Year INT NOT NULL,
-    Term VARCHAR(10) NOT NULL,
-    CourseCode VARCHAR(10) NOT NULL
-);
-
-CREATE TABLE CourseTimes (
-    CourseTimeID INT PRIMARY KEY IDENTITY(1,1),
-    CourseID INT NOT NULL,
-    DayID INT NOT NULL,
-    StartTimeMins INT CHECK (StartTimeMins >= 0 AND StartTimeMins < 1440),
-    DurationMins INT CHECK (DurationMins > 0 AND DurationMins <= 480),
-    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
-    FOREIGN KEY (DayID) REFERENCES DayOfWeek(DayID)
+	Year INT NOT NULL,
+	Term VARCHAR(10) NOT NULL,
+	CourseCode VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE Student (
@@ -65,7 +47,8 @@ CREATE TABLE Student (
     DOB DATE,
     Email VARCHAR(100),
     FirstName VARCHAR(50),
-    LastName VARCHAR(50)
+    LastName VARCHAR(50),
+	Status VARCHAR(10)
 );
 
 CREATE TABLE Enroll (
@@ -88,8 +71,7 @@ CREATE TABLE ShoppingCart (
     CartID INT PRIMARY KEY IDENTITY(1,1),
     StudentID INT FOREIGN KEY REFERENCES Student(StudentID),
     CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
-    Time DATETIME,
-    CONSTRAINT UniqueShoppingCartStudentIDCourseID UNIQUE (StudentID, CourseID)
+    Time DATETIME
 );
 
 CREATE TABLE Prereq (
