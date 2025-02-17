@@ -80,7 +80,7 @@ namespace SchoolReg
                 return;
             }
 
-            using var transaction = DbConnection.Connection.BeginTransaction();
+            using var transaction = (SqlTransaction)await DbConnection.Connection.BeginTransactionAsync();
             var succeededCourseCodes = new List<string>();
 
             try
@@ -102,15 +102,28 @@ namespace SchoolReg
                         continue;
                     }
 
-                    // Insert into enrollment
-                    using var cmd = new SqlCommand("INSERT INTO Enroll (StudentID, CourseID) VALUES (@StudentID, @CourseID)", DbConnection.Connection, transaction);
-                    cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
-                    cmd.Parameters.AddWithValue("@CourseID", courseID);
+                    // Call the EnrollStudent stored procedure
+                    using var enrollCmd = new SqlCommand("EnrollStudent", DbConnection.Connection, transaction);
+                    enrollCmd.CommandType = CommandType.StoredProcedure;
+                    enrollCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    enrollCmd.Parameters.AddWithValue("@CourseID", courseID);
 
-                    await cmd.ExecuteNonQueryAsync();
-                    succeededCourseCodes.Add(courseCode);
+                    int rowsAffected = await enrollCmd.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0) // Ensure enrollment was successful
+                    {
+                        succeededCourseCodes.Add(courseCode);
+
+                        // Remove course from ShoppingCart after successful enrollment
+                        using var deleteCmd = new SqlCommand("DELETE FROM ShoppingCart WHERE StudentID = @StudentID AND CourseID = @CourseID", DbConnection.Connection, transaction);
+                        deleteCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                        deleteCmd.Parameters.AddWithValue("@CourseID", courseID);
+
+                        await deleteCmd.ExecuteNonQueryAsync();
+                    }
                 }
 
+                // Commit transaction if at least one course was successfully enrolled
                 await transaction.CommitAsync();
 
                 if (succeededCourseCodes.Count > 0)
@@ -118,7 +131,7 @@ namespace SchoolReg
                     MessageBox.Show($"Successfully enrolled in: {string.Join(", ", succeededCourseCodes)}", "Enrollment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                // Refresh UI asynchronously to prevent UI lag
+                // Refresh UI asynchronously
                 await Task.Run(() => LoadCart());
 
                 // Close only after UI update
@@ -127,11 +140,9 @@ namespace SchoolReg
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while enrolling. Course is full.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
 
 
         private void RemoveSelectedButton_Click(object sender, EventArgs e)
