@@ -1,109 +1,72 @@
-USE SchoolReg
+USE SchoolReg;
 
 INSERT INTO Department (Field) VALUES 
 ('Computer Science'),
 ('Mathematics'),
 ('Physics'),
-('Business');
+('Business'), 
+('Chemistry'),
+('Biology');
 
 INSERT INTO Instructor (FirstName, LastName, DepartmentID, Email) VALUES
 ('John', 'Doe', 1, 'johndoe@university.edu'),
 ('Jane', 'Smith', 2, 'janesmith@university.edu'),
 ('Robert', 'Johnson', 3, 'robertj@university.edu'),
-('Emily', 'Clark', 4, 'emilyc@university.edu');
-
+('Emily', 'Clark', 4, 'emilyc@university.edu'),
+('Bob', 'Fisher', 5, 'bobf@university.edu'),
+('Anna', 'White', 5, 'annaw@university.edu'),
+('Violet', 'Kane', 6, 'violetk@university.edu'),
+('Cory', 'Jensen', 6, 'coryjensen@university.edu'),
+('Mary', 'West', 2, 'maryw@university.edu');
 
 INSERT INTO Classroom (Location, Capacity) VALUES
-('Building A, Room 101', 5),
+('Building A, Room 101', 3), -- Small class for capacity testing
 ('Building B, Room 202', 5),
-('Building C, Room 303', 5),
-('Building D, Room 404', 5);
+('Building C, Room 303', 10),
+('Building D, Room 404', 5),
+('Building E, Room 205', 5),
+('Building F, Room 200', 5);
 
+INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, DayOfWeek, StartTime, EndTime)
+VALUES
+(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 'Monday', '09:00:00', '10:30:00'),
+(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200', 'Monday', '09:30:00', '11:00:00'), -- Overlaps with CMPT101
+(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114', 'Tuesday', '08:30:00', '10:00:00'),
+(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372', 'Thursday', '11:00:00', '12:30:00'),
+(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101', 'Friday', '14:00:00', '15:30:00'),
 
-INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode) VALUES
-(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101'),
-(102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200'),
-(103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114'),
-(104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372'),
-(105, 4, 4, 1, 3, 'Principles of Management', 2026, 'Winter', 'MGMT101');
-
+-- Courses with prerequisites
+(106, 5, 5, 5, 3, 'Introduction to Chemistry', 2025, 'Fall', 'CHEM101', 'Wednesday', '10:00:00', '11:30:00'),
+(107, 5, 5, 5, 3, 'Organic Chemistry', 2026, 'Winter', 'CHEM252', 'Wednesday', '12:00:00', '13:30:00'), -- Requires CHEM101
+(108, 6, 7, 6, 3, 'Introduction to Cell Biology', 2025, 'Fall', 'BIOL101', 'Tuesday', '14:00:00', '15:30:00'),
+(109, 6, 8, 6, 3, 'Principles of Genetics', 2026, 'Winter', 'BIOL207', 'Tuesday', '16:00:00', '17:30:00'); -- Requires BIOL101
 
 INSERT INTO Student (DepartmentID, DOB, Email, FirstName, LastName, Status) VALUES
 (1, '2002-04-15', 'alice@university.edu', 'Alice', 'Brown', 'Active'),
 (2, '2001-06-20', 'bob@university.edu', 'Bob', 'White', 'Active'),
 (3, '2003-01-10', 'charlie@university.edu', 'Charlie', 'Green', 'Active'),
 (4, '2002-09-05', 'diana@university.edu', 'Diana', 'Black', 'Active'),
-(1, '2003-08-14', 'lucas@university.edu', 'Lucas', 'Perez', 'Active'),
-(1, '2002-12-22', 'amelia@university.edu', 'Amelia', 'Gonzalez', 'Active'),
-(2, '2001-03-05', 'henry@university.edu', 'Henry', 'Hall', 'Active'),
-(2, '2003-06-17', 'harper@university.edu', 'Harper', 'Allen', 'Active'),
-(3, '2000-09-28', 'elijah@university.edu', 'Elijah', 'Scott', 'Active'),
-(3, '2004-01-11', 'evelyn@university.edu', 'Evelyn', 'Rivera', 'Active'),
-(4, '2002-10-02', 'alexander@university.edu', 'Alexander', 'Carter', 'Active'),
-(4, '2003-05-25', 'abigail@university.edu', 'Abigail', 'Mitchell', 'Active'),
-(1, '2001-11-30', 'william@university.edu', 'William', 'Adams', 'Active'),
-(1, '2004-07-07', 'ava@university.edu', 'Ava', 'Nelson', 'Active'),
-(2, '2002-02-14', 'jackson@university.edu', 'Jackson', 'Baker', 'Active'),
-(2, '2003-12-05', 'sofia@university.edu', 'Sofia', 'Roberts', 'Active'),
-(3, '2002-06-28', 'michael@university.edu', 'Michael', 'Hernandez', 'Active'),
-(3, '2004-09-15', 'grace@university.edu', 'Grace', 'Campbell', 'Active'),
-(4, '2001-03-18', 'oliver@university.edu', 'Oliver', 'Garcia', 'Active'),
-(4, '2002-08-22', 'chloe@university.edu', 'Chloe', 'Rodriguez', 'Active'),
-(1, '2003-01-10', 'nathan@university.edu', 'Nathan', 'Martinez', 'Active'),
-(2, '2004-11-14', 'zoe@university.edu', 'Zoe', 'Lee', 'Active'),
-(3, '2001-05-20', 'jacob@university.edu', 'Jacob', 'Lopez', 'NonActive'),
-(4, '2002-04-29', 'lily@university.edu', 'Lily', 'Harris', 'NonActive');
-
-INSERT INTO Enroll (StudentID, CourseID) VALUES
-(1, 101),
-(1, 102),
-(2, 103),
-(3, 104),
-(4, 105),
-(5, 101),
-(6, 102),
-(7, 103),
-(8, 104),
-(9, 105),
-(10, 101),
-(11, 103),
-(12, 104),
-(13, 102),
-(14, 105),
-(15, 101),
-(16, 103),
-(17, 104),
-(18, 102),
-(19, 105),
-(20, 101);
-
-INSERT INTO TakenCourses (StudentID, CourseID) VALUES
-(1, 101),
-(2, 103),
-(3, 104),
-(5, 101),
-(6, 102),
-(7, 103),
-(8, 104),
-(9, 105),
-(10, 101),
-(11, 103),
-(12, 104),
-(13, 102),
-(14, 105);
-
-INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES
-(5, 102, GETDATE()),
-(6, 104, GETDATE()),
-(7, 105, GETDATE()),
-(8, 101, GETDATE()),
-(9, 103, GETDATE()), 
-(10, 104, GETDATE()),
-(11, 102, GETDATE()),
-(12, 105, GETDATE()),
-(13, 101, GETDATE()),
-(14, 103, GETDATE());
+(5, '2001-11-30', 'william@university.edu', 'William', 'Adams', 'Active'),
+(5, '2001-12-31', 'fred@university.edu', 'Fred', 'Alfred', 'NonActive');
 
 INSERT INTO Prereq (CourseID, PrereqID) VALUES
-(102, 101),  -- Data Structures requires Introduction to Programming
-(104, 103);  -- Quantum Mechanics requires Calculus I
+(107, 106),  -- Organic Chemistry requires Introduction to Chemistry
+(109, 108);  -- Principles of Genetics requires Introduction to Cell Biology
+
+INSERT INTO Enroll (StudentID, CourseID) VALUES
+-- (1, 101), Conflict (Same day/time as CMPT101)
+(2, 103), -- Allowed
+(3, 105), -- Allowed
+(5, 108); -- Allowed
+
+INSERT INTO TakenCourses (StudentID, CourseID) VALUES
+(4, 106), -- Student 4 has completed Introduction to Chemistry
+(5, 108); -- Student 5 has completed Introduction to Cell Biology
+
+INSERT INTO ShoppingCart (StudentID, CourseID) VALUES
+-- (2, 102),  Conflict (Same time as CMPT101)
+(3, 105); -- Allowed
+-- (4, 107), Should fail (Prereq CHEM101 required)
+-- (5, 112); Should fail (Prereq BIOL101 required)
+
+
