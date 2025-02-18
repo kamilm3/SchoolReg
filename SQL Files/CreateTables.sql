@@ -1,6 +1,8 @@
 USE SchoolReg;
 
-DROP VIEW IF EXISTS vwEnrollCapacity;
+DROP VIEW IF EXISTS dbo.vwActiveStudentPrereqs;
+GO
+
 
 DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS TakenCourses;
@@ -46,6 +48,7 @@ CREATE TABLE Courses (
     DayOfWeek VARCHAR(9) NOT NULL,
     StartTime TIME NOT NULL,
     EndTime TIME NOT NULL,
+  	EnrolledStudents INT DEFAULT 0,
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
     FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID),
     FOREIGN KEY (ClassroomID) REFERENCES Classroom(ClassroomID)
@@ -95,3 +98,4 @@ CREATE TABLE Prereq (
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID) ON DELETE CASCADE,
     FOREIGN KEY (PrereqID) REFERENCES Courses(CourseID) ON DELETE NO ACTION
 );
+

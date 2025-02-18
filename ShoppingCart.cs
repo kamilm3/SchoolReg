@@ -23,15 +23,28 @@ namespace SchoolReg
             var query = "SELECT ShoppingCart.CourseID, CourseCode, CourseName, Year, Term FROM ShoppingCart JOIN Courses ON ShoppingCart.CourseID = Courses.CourseID WHERE StudentID = @StudentID";
             var cmd = new SqlCommand(query, DbConnection.Connection);
             cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
-            cmd.ExecuteNonQuery();
 
             var adapter = new SqlDataAdapter(cmd);
             var dt = new DataTable();
-
             adapter.Fill(dt);
 
-            CartDataGridView.DataSource = dt;
+            // Ensure UI update happens on the main thread
+            if (CartDataGridView.InvokeRequired)
+            {
+                CartDataGridView.Invoke(new Action(() =>
+                {
+                    UpdateCartUI(dt);
+                }));
+            }
+            else
+            {
+                UpdateCartUI(dt);
+            }
+        }
 
+        private void UpdateCartUI(DataTable dt)
+        {
+            CartDataGridView.DataSource = dt;
             CartDataGridView.Columns["CourseID"].Visible = false;
 
             if (CartDataGridView.Rows.Count == 0)
@@ -53,71 +66,84 @@ namespace SchoolReg
             }
         }
 
+
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void EnrollButton_Click(object sender, EventArgs e)
+        private async void EnrollButton_Click(object sender, EventArgs e)
         {
-            // Ensure there are courses in the cart
             if (CartDataGridView.Rows.Count == 0)
             {
                 MessageBox.Show("There are no courses in your cart to enroll in");
                 return;
             }
 
-            var transaction = DbConnection.Connection.BeginTransaction();
-
+            using var transaction = (SqlTransaction)await DbConnection.Connection.BeginTransactionAsync();
             var succeededCourseCodes = new List<string>();
 
-            // Loop through each course in the DataGridView
-            foreach (DataGridViewRow row in CartDataGridView.Rows)
+            try
             {
-                // Retrieve course details from the row
-                var courseID = (int)row.Cells["CourseID"].Value;
-                var courseCode = (string)row.Cells["CourseCode"].Value;
-                var courseName = (string)row.Cells["CourseName"].Value;
-                var year = (int)row.Cells["Year"].Value;
-                var term = (string)row.Cells["Term"].Value;
-
-                using var cmd = new SqlCommand("spEnrollment", DbConnection.Connection, transaction);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
-                cmd.Parameters.AddWithValue("@CourseID", courseID);
-                cmd.Parameters.AddWithValue("@Year", year);
-                cmd.Parameters.AddWithValue("@Term", term);
-
-                try
+                foreach (DataGridViewRow row in CartDataGridView.Rows)
                 {
-                    // Execute the stored procedure for this course
-                    cmd.ExecuteNonQuery();
+                    var courseID = (int)row.Cells["CourseID"].Value;
+                    var courseCode = (string)row.Cells["CourseCode"].Value;
 
-                    succeededCourseCodes.Add(courseCode);
-                }
-                catch (SqlException ex)
-                {
-                    transaction.Rollback();
+                    // Check if student is already enrolled
+                    using var checkCmd = new SqlCommand("SELECT COUNT(*) FROM Enroll WHERE StudentID = @StudentID AND CourseID = @CourseID", DbConnection.Connection, transaction);
+                    checkCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    checkCmd.Parameters.AddWithValue("@CourseID", courseID);
 
-                    // If the stored procedure throws an error (e.g., prerequisite not met, scheduling conflict, or full course),
-                    // display the error and exit without processing further courses.
-                    var rollbackMessage = $"Error enrolling in {courseCode}: {ex.Message}";
-                    if (succeededCourseCodes.Count > 0)
+                    int existingCount = (int)await checkCmd.ExecuteScalarAsync();
+                    if (existingCount > 0)
                     {
-                        rollbackMessage += $"\n\nRolled back enrollment in {string.Join(", ", succeededCourseCodes)}";
+                        MessageBox.Show($"{courseCode} is already enrolled", "Enrollment Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        continue;
                     }
 
-                    MessageBox.Show(rollbackMessage);
-                    return;
+                    // Call the EnrollStudent stored procedure
+                    using var enrollCmd = new SqlCommand("EnrollStudent", DbConnection.Connection, transaction);
+                    enrollCmd.CommandType = CommandType.StoredProcedure;
+                    enrollCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                    enrollCmd.Parameters.AddWithValue("@CourseID", courseID);
+
+                    int rowsAffected = await enrollCmd.ExecuteNonQueryAsync();
+
+                    if (rowsAffected > 0) // Ensure enrollment was successful
+                    {
+                        succeededCourseCodes.Add(courseCode);
+
+                        // Remove course from ShoppingCart after successful enrollment
+                        using var deleteCmd = new SqlCommand("DELETE FROM ShoppingCart WHERE StudentID = @StudentID AND CourseID = @CourseID", DbConnection.Connection, transaction);
+                        deleteCmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
+                        deleteCmd.Parameters.AddWithValue("@CourseID", courseID);
+
+                        await deleteCmd.ExecuteNonQueryAsync();
+                    }
                 }
+
+                // Commit transaction if at least one course was successfully enrolled
+                await transaction.CommitAsync();
+
+                if (succeededCourseCodes.Count > 0)
+                {
+                    MessageBox.Show($"Successfully enrolled in: {string.Join(", ", succeededCourseCodes)}", "Enrollment Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // Refresh UI asynchronously
+                await Task.Run(() => LoadCart());
+
+                // Close only after UI update
+                this.BeginInvoke(new Action(() => this.Close()));
             }
-
-            transaction.Commit();
-
-            // If all stored procedure calls succeeded, notify the user
-            MessageBox.Show("Courses successfully enrolled");
-            this.Close();
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                MessageBox.Show($"An error occurred while enrolling. Course is full.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void RemoveSelectedButton_Click(object sender, EventArgs e)
         {

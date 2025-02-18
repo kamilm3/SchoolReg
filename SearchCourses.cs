@@ -88,33 +88,88 @@ namespace SchoolReg
 
         private void addCartButton_Click(object sender, EventArgs e)
         {
-
             var successCourseCodes = new List<string>();
             var existingCourseMessages = new List<string>();
+            var conflictMessages = new List<string>();
+            var prereqMessages = new List<string>();
 
             foreach (DataGridViewRow row in CoursesTable.SelectedRows)
             {
                 string courseCode = "";
                 try
                 {
-                    //var dataRow = (DataRowView)CoursesTable.CurrentRow.DataBoundItem;
-                    //int courseId = (int)dataRow.Row.ItemArray[0]!;
-
-                    // Retrieve course details from the row
                     var courseId = (int)row.Cells["CourseID"].Value;
                     courseCode = (string)row.Cells["CourseCode"].Value;
+                    var studentId = Session.CurrentSession!.StudentID;
+                    var year = Year;
+                    var term = Term;
 
-                    var query = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
+                    // **Step 1: Check for time conflicts**
+                    using (var cmd = new SqlCommand("CheckTimeConflict", DbConnection.Connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StudentID", studentId);
+                        cmd.Parameters.AddWithValue("@CourseID", courseId);
 
-                    using var cmd = new SqlCommand(query, DbConnection.Connection);
-                    cmd.Parameters.AddWithValue("@StudentID", Session.CurrentSession!.StudentID);
-                    cmd.Parameters.AddWithValue("@CourseID", courseId);
-                    cmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
-                    cmd.ExecuteNonQuery();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    var conflictCourse = reader["ConflictingCourseName"].ToString();
+                                    var dayOfWeek = reader["DayOfWeek"].ToString();
+                                    var startTime = reader["StartTime"].ToString();
+                                    var endTime = reader["EndTime"].ToString();
+                                    conflictMessages.Add(
+                                        $"Cannot add {courseCode}: Conflicts with {conflictCourse} on {dayOfWeek} ({startTime} - {endTime})"
+                                    );
+                                }
+                                continue; // Skip this course if there's a conflict
+                            }
+                        }
+                    }
+
+                    // **Step 2: Check prerequisite completion using vwActiveStudentPrereqs**
+                    string prereqQuery = @"
+                        SELECT PrereqMet 
+                        FROM vwActiveStudentPrereqs 
+                        WHERE StudentID = @StudentID 
+                        AND CourseID = @CourseID";
+
+                    using (var prereqCmd = new SqlCommand(prereqQuery, DbConnection.Connection))
+                    {
+                        prereqCmd.Parameters.AddWithValue("@StudentID", studentId);
+                        prereqCmd.Parameters.AddWithValue("@CourseID", courseId);
+
+                        var prereqMet = prereqCmd.ExecuteScalar();
+
+                        if (prereqMet == null)
+                        {
+                            // If no row exists, it means the course has **no prerequisite**, so it's safe to add.
+                        }
+                        else if ((int)prereqMet == 0)
+                        {
+                            // If PrereqMet = 0, the student has **not completed the prerequisite**  Block adding.
+                            prereqMessages.Add($"Cannot add {courseCode}: Prerequisite not met.");
+                            continue; // Skip this course
+                        }
+                    }
+
+
+
+                    // **Step 3: Add course to shopping cart if all checks pass**
+                    string insertQuery = "INSERT INTO ShoppingCart (StudentID, CourseID, Time) VALUES (@StudentID, @CourseID, @Time)";
+                    using (var cartCmd = new SqlCommand(insertQuery, DbConnection.Connection))
+                    {
+                        cartCmd.Parameters.AddWithValue("@StudentID", studentId);
+                        cartCmd.Parameters.AddWithValue("@CourseID", courseId);
+                        cartCmd.Parameters.AddWithValue("@Time", DateTime.UtcNow);
+                        cartCmd.ExecuteNonQuery();
+                    }
 
                     successCourseCodes.Add(courseCode);
                 }
-                // exception message contains Violation of UNIQUE KEY constraint
                 catch (SqlException ex) when (ex.Number == 2627)
                 {
                     existingCourseMessages.Add($"{courseCode} is already in your cart");
@@ -125,16 +180,28 @@ namespace SchoolReg
                 }
             }
 
+            // **Step 4: Display appropriate messages**
+            if (conflictMessages.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", conflictMessages), "Conflict Detected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            if (prereqMessages.Count > 0)
+            {
+                MessageBox.Show(string.Join("\n", prereqMessages), "Prerequisite Requirement Not Met", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             if (existingCourseMessages.Count > 0)
             {
-                MessageBox.Show(string.Join("\n", existingCourseMessages), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Join("\n", existingCourseMessages), "Already in Cart", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
             if (successCourseCodes.Count > 0)
             {
                 MessageBox.Show($"Added {string.Join(", ", successCourseCodes)} to your cart", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
+
+
 
         private void ViewCartButton_Click(object sender, EventArgs e)
         {
