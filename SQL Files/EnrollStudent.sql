@@ -8,7 +8,7 @@ begin
     begin transaction;
     begin try
         -- Check if the course is full
-        if (select COUNT(*) from Enroll where CourseID = @CourseID) 
+		if (select EnrolledStudents from Courses where CourseID = @CourseID) 
            >= (select Capacity from Classroom where ClassroomID = 
               (select ClassroomID from Courses where CourseID = @CourseID))
         begin

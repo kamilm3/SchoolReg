@@ -29,7 +29,7 @@ INSERT INTO Classroom (Location, Capacity) VALUES
 
 INSERT INTO Courses (CourseID, DepartmentID, InstructorID, ClassroomID, Credits, CourseName, Year, Term, CourseCode, DayOfWeek, StartTime, EndTime, EnrolledStudents)
 VALUES
-(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 'Monday', '09:00:00', '10:30:00', 0),
+(101, 1, 1, 1, 3, 'Introduction to Programming', 2025, 'Fall', 'CMPT101', 'Monday', '09:00:00', '10:30:00', 2),
 (102, 1, 1, 2, 4, 'Data Structures', 2025, 'Fall', 'CMPT200', 'Monday', '09:30:00', '11:00:00', 0), -- Overlaps with CMPT101
 (103, 2, 2, 3, 3, 'Calculus I', 2025, 'Fall', 'MATH114', 'Tuesday', '08:30:00', '10:00:00', 1),
 (104, 3, 3, 4, 4, 'Quantum Mechanics', 2026, 'Winter', 'PHYS372', 'Thursday', '11:00:00', '12:30:00', 0),
