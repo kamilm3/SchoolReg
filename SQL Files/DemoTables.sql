@@ -72,3 +72,4 @@ INSERT INTO ShoppingCart (StudentID, CourseID) VALUES
 (3, 105); -- Allowed
 -- (4, 107), Should fail (Prereq CHEM101 required)
 -- (5, 112); Should fail (Prereq BIOL101 required)
+

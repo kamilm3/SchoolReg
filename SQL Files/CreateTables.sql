@@ -3,6 +3,7 @@ USE SchoolReg;
 DROP VIEW IF EXISTS dbo.vwActiveStudentPrereqs;
 GO
 
+
 DROP TABLE IF EXISTS Enroll;
 DROP TABLE IF EXISTS TakenCourses;
 DROP TABLE IF EXISTS ShoppingCart;
@@ -47,7 +48,7 @@ CREATE TABLE Courses (
     DayOfWeek VARCHAR(9) NOT NULL,
     StartTime TIME NOT NULL,
     EndTime TIME NOT NULL,
-	EnrolledStudents INT DEFAULT 0,
+  	EnrolledStudents INT DEFAULT 0,
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
     FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID),
     FOREIGN KEY (ClassroomID) REFERENCES Classroom(ClassroomID)
