@@ -1,6 +1,3 @@
-
-
-
 --dimension tables
 CREATE TABLE DimStudents (
     StudentID INT PRIMARY KEY,
@@ -32,11 +29,11 @@ CREATE TABLE DimDate (
 
 --fact table
 CREATE TABLE FactCourseEnrollment (
-    CourseID INT, -- column that links to DimCourses --type: INT (PK,FK)
-    InstructorID INT, --links to DimInstructors --INT(FK)
-    StudentID INT, --links to DimStudents --INT(FK)
-    DateID INT, -- links to DimDate --INT(FK)
-    EnrollmentCount INT, -- num of students in a course
+    CourseID INT,
+    InstructorID INT,
+    StudentID INT,
+    DateID INT,
+    EnrollmentCount INT,
     PRIMARY KEY (CourseID, InstructorID, StudentID, DateID),
     FOREIGN KEY (CourseID) REFERENCES DimCourses(CourseID),
     FOREIGN KEY (InstructorID) REFERENCES DimInstructors(InstructorID),
